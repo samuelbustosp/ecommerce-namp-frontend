@@ -24,13 +24,13 @@ const CategoryList = ({categories, deleteCategory, onEditCategory}) => {
                             <td className="px-4 py-2 border-b border-b-gray-300">
                                 <div className="flex items-center">
                                 <button 
-                                    className="text-green-600 text-2xl" 
+                                    className="text-green-600 text-2xl hover:text-green-500" 
                                     onClick={()=>onEditCategory(category)}
                                 >
                                     <FaEdit/>
                                 </button>
                                 <button 
-                                    className="text-red-600 text-3xl" 
+                                    className="text-red-600 text-3xl hover:text-red-500" 
                                     onClick={()=>deleteCategory(category.idCategory)}
                                 >
                                     <TiDelete/>

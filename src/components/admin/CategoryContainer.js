@@ -6,14 +6,13 @@ import { IoMdAdd } from "react-icons/io";
 const CategoryContainer = () => {
     const [categories, setCategories] = useState([]);
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true); // Estado para manejar el loading
+    const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingCategory, setEditingCategory] = useState(null);
 
-
     useEffect(() => {
         const fetchCategories = async () => {
-            setLoading(true); // Mostrar loading al empezar a cargar datos
+            setLoading(true);
             try {
                 const response = await fetch("http://localhost:8080/api-namp/category");
                 if (!response.ok) {
@@ -24,14 +23,14 @@ const CategoryContainer = () => {
             } catch (error) {
                 setError(error.message);
             } finally {
-                setLoading(false); // Ocultar loading después de la carga
+                setLoading(false);
             }
         };
         fetchCategories();
     }, []);
 
     const addCategory = async (newCategory) => {
-        setLoading(true); // Mostrar loading al agregar una categoría
+        setLoading(true);
         try {
             const response = await fetch("http://localhost:8080/api-namp/category", {
                 method: "POST",
@@ -41,19 +40,20 @@ const CategoryContainer = () => {
                 body: JSON.stringify(newCategory)
             });
             if (!response.ok) {
-                throw new Error('Error al agregar la categoría');
+                const errorText = await response.text();
+                throw new Error(errorText || 'Error al agregar la categoría');
             }
             const data = await response.json();
             setCategories(prevCategories => [...prevCategories, data]);
         } catch (error) {
-            setError(error.message);
+            throw error;
         } finally {
-            setLoading(false); // Ocultar loading después de la operación
+            setLoading(false);
         }
     };
 
     const updateCategory = async (id, updateCategory) => {
-        setLoading(true); // Mostrar loading al actualizar una categoría
+        setLoading(true);
         try {
             const response = await fetch(`http://localhost:8080/api-namp/category/${id}`, {
                 method: "PUT",
@@ -63,7 +63,8 @@ const CategoryContainer = () => {
                 body: JSON.stringify(updateCategory)
             });
             if (!response.ok) {
-                throw new Error('Error al actualizar la categoría');
+                const errorText = await response.text();
+                throw new Error(errorText || 'Error al actualizar la categoría');
             }
             const data = await response.json();
             setCategories(prevCategories =>
@@ -72,12 +73,12 @@ const CategoryContainer = () => {
         } catch (error) {
             setError(error.message);
         } finally {
-            setLoading(false); // Ocultar loading después de la operación
+            setLoading(false);
         }
     };
 
     const deleteCategory = async (id) => {
-        setLoading(true); // Mostrar loading al eliminar una categoría
+        setLoading(true);
         try {
             const response = await fetch(`http://localhost:8080/api-namp/category/${id}`, {
                 method: "DELETE"
@@ -91,7 +92,7 @@ const CategoryContainer = () => {
         } catch (error) {
             setError(error.message);
         } finally {
-            setLoading(false); // Ocultar loading después de la operación
+            setLoading(false);
         }
     };
 
@@ -105,9 +106,8 @@ const CategoryContainer = () => {
         setIsModalOpen(true);
     };
 
-
     if (loading) {
-        return <p>Loading...</p>; // Mensaje de loading
+        return <p>Loading...</p>;
     }
 
     if (error) {
@@ -144,3 +144,4 @@ const CategoryContainer = () => {
 };
 
 export default CategoryContainer;
+

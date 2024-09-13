@@ -1,9 +1,9 @@
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button, TextInput } from 'flowbite-react';
-import { useState } from 'react';
-import { useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const AddCategoryModal = ({ isOpen, onClose, onAddCategory, onUpdateCategory, categoryToEdit }) => {
     const [category, setCategory] = useState({ name: '', description: '' });
+    const [errorMessage, setErrorMessage] = useState(''); // Estado para el mensaje de error
 
     useEffect(() => {
         if (categoryToEdit) {
@@ -21,15 +21,19 @@ const AddCategoryModal = ({ isOpen, onClose, onAddCategory, onUpdateCategory, ca
         setCategory(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (categoryToEdit) {
-            onUpdateCategory(categoryToEdit.idCategory, category);
-        } else {
-            onAddCategory(category);
+        setErrorMessage(''); // Limpiar mensajes de error
+        try {
+            if (categoryToEdit) {
+                await onUpdateCategory(categoryToEdit.idCategory, category);
+            } else {
+                await onAddCategory(category);
+            }
+            onClose();
+        } catch (error) {
+            setErrorMessage(error.message); // Mostrar el mensaje de error
         }
-        setCategory({ name: '', description: '' });
-        onClose();
     };
 
     return (
@@ -59,17 +63,14 @@ const AddCategoryModal = ({ isOpen, onClose, onAddCategory, onUpdateCategory, ca
                             required
                         />
                     </div>
+                    {errorMessage && (
+                        <p className="text-red-600 mb-4">{errorMessage}</p> // Mostrar el mensaje de error
+                    )}
                     <ModalFooter>
-                        <Button
-                            color="gray"
-                            onClick={onClose}
-                        >
+                        <Button color="gray" onClick={onClose}>
                             Cancelar
                         </Button>
-                        <Button
-                            color="blue"
-                            type="submit" // Usa type="submit" para enviar el formulario
-                        >
+                        <Button color="blue" type="submit">
                             {categoryToEdit ? 'Actualizar' : 'Agregar'}
                         </Button>
                     </ModalFooter>
