@@ -62,7 +62,7 @@ const CategoryContainer = () => {
             }
             const data = await response.json();
             setCategories(prevCategories =>
-                prevCategories.map(cat => cat.id === id ? data : cat)
+                prevCategories.map(cat => cat.idCategory === id ? data : cat)
             );
         } catch (error) {
             setError(error.message);
@@ -81,7 +81,7 @@ const CategoryContainer = () => {
                 throw new Error('Error al eliminar la categoría');
             }
             setCategories(prevCategories =>
-                prevCategories.filter(cat => cat.id !== id)
+                prevCategories.filter(cat => cat.idCategory !== id)
             );
         } catch (error) {
             setError(error.message);
