@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CategoryList from "./CategoryList";
 import AddCategoryModal from "./AddCategoryModal";
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'flowbite-react'; // Modal de Flowbite
 import { IoMdAdd } from "react-icons/io";
 
 const CategoryContainer = () => {
@@ -9,6 +10,7 @@ const CategoryContainer = () => {
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingCategory, setEditingCategory] = useState(null);
+    const [isErrorModalOpen, setIsErrorModalOpen] = useState(false); // Estado para controlar el modal de error
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -22,6 +24,7 @@ const CategoryContainer = () => {
                 setCategories(data);
             } catch (error) {
                 setError(error.message);
+                setIsErrorModalOpen(true); // Mostrar modal de error
             } finally {
                 setLoading(false);
             }
@@ -45,8 +48,10 @@ const CategoryContainer = () => {
             }
             const data = await response.json();
             setCategories(prevCategories => [...prevCategories, data]);
+            setIsModalOpen(false); // Cerrar modal solo si el POST es exitoso
         } catch (error) {
-            throw error;
+            setError(error.message);
+            setIsErrorModalOpen(true); // Mostrar modal de error
         } finally {
             setLoading(false);
         }
@@ -70,8 +75,11 @@ const CategoryContainer = () => {
             setCategories(prevCategories =>
                 prevCategories.map(cat => cat.idCategory === id ? data : cat)
             );
+            setIsModalOpen(false); // Cerrar modal solo si el PUT es exitoso
         } catch (error) {
             setError(error.message);
+            setIsErrorModalOpen(true); // Mostrar modal de error
+            // El modal de agregar categoría no se cierra en caso de error
         } finally {
             setLoading(false);
         }
@@ -91,6 +99,7 @@ const CategoryContainer = () => {
             );
         } catch (error) {
             setError(error.message);
+            setIsErrorModalOpen(true); // Mostrar modal de error
         } finally {
             setLoading(false);
         }
@@ -106,12 +115,13 @@ const CategoryContainer = () => {
         setIsModalOpen(true);
     };
 
+    const closeErrorModal = () => {
+        setIsErrorModalOpen(false);
+        setError(null);
+    };
+
     if (loading) {
         return <p>Loading...</p>;
-    }
-
-    if (error) {
-        return <p>{error}</p>;
     }
 
     return (
@@ -139,9 +149,18 @@ const CategoryContainer = () => {
                 onUpdateCategory={updateCategory}
                 categoryToEdit={editingCategory}
             />
+            {/* Modal de error independiente del modal de agregar */}
+            <Modal show={isErrorModalOpen} onClose={closeErrorModal}>
+                <ModalHeader>¡Ocurrió un error!</ModalHeader>
+                <ModalBody>
+                    <p>{error}</p>
+                </ModalBody>
+                <ModalFooter>
+                    <Button onClick={closeErrorModal}>Aceptar</Button>
+                </ModalFooter>
+            </Modal>
         </div>
     );
 };
 
 export default CategoryContainer;
-

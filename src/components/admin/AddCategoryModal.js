@@ -63,9 +63,7 @@ const AddCategoryModal = ({ isOpen, onClose, onAddCategory, onUpdateCategory, ca
                             required
                         />
                     </div>
-                    {errorMessage && (
-                        <p className="text-red-600 mb-4">{errorMessage}</p> // Mostrar el mensaje de error
-                    )}
+                    
                     <ModalFooter>
                         <Button color="gray" onClick={onClose}>
                             Cancelar
