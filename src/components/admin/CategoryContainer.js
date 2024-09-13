@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import CategoryList from "./CategoryList";
+import AddCategoryModal from "./AddCategoryModal";
+import { IoMdAdd } from "react-icons/io";
 
 const CategoryContainer = () => {
     const [categories, setCategories] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true); // Estado para manejar el loading
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editingCategory, setEditingCategory] = useState(null);
+
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -90,6 +95,17 @@ const CategoryContainer = () => {
         }
     };
 
+    const handleAddCategoryClick = () => {
+        setEditingCategory(null);
+        setIsModalOpen(true);
+    };
+
+    const editCategoryHandler = (category) => {
+        setEditingCategory(category);
+        setIsModalOpen(true);
+    };
+
+
     if (loading) {
         return <p>Loading...</p>; // Mensaje de loading
     }
@@ -100,11 +116,28 @@ const CategoryContainer = () => {
 
     return (
         <div>
+            <div className="flex justify-end mr-4 mt-4">
+                <button
+                    onClick={handleAddCategoryClick}
+                    className="bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg px-2 py-2 flex items-center"
+                >
+                    <span><IoMdAdd/></span>
+                    Agregar
+                </button>
+            </div>
             <CategoryList
                 categories={categories}
                 updateCategory={updateCategory}
                 deleteCategory={deleteCategory}
                 addCategory={addCategory}
+                onEditCategory={editCategoryHandler}
+            />
+            <AddCategoryModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onAddCategory={addCategory}
+                onUpdateCategory={updateCategory}
+                categoryToEdit={editingCategory}
             />
         </div>
     );

@@ -5,6 +5,7 @@ import AdminLayout from './layout/admin/AdminLayout';
 import ProductPage from './pages/ProductPage';
 import CategoryPage from './pages/CategoryPage';
 import SubcategoryPage from './pages/SubcategoryPage';
+import CategoryForm from './components/admin/AddCategoryModal';
 
 function App() {
   
@@ -17,6 +18,7 @@ function App() {
             <Route path="products" element={<ProductPage/>}/>
             <Route path="categories" element={<CategoryPage/>}/>
             <Route path="subcategories" element={<SubcategoryPage/>}/>
+            <Route path="add-category" element={<CategoryForm/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

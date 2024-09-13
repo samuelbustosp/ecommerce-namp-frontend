@@ -14,7 +14,7 @@ const CategoryPage = () => {
                     <p className="text-lg font-normal poppins-light text-gray-500 lg:text-xl dark:text-gray-400 mb-2">Administre sus categorias de forma rápida y eficiente con este módulo.</p>
                 </div>
             </div>
-            <div className="bg-white ml-6 mr-6 mt-2 rounded-xl shadow-md">
+            <div className="bg-white ml-6 mr-6 mt-4 rounded-xl shadow-md">
                 <CategoryContainer/>
             </div>
         </div>
