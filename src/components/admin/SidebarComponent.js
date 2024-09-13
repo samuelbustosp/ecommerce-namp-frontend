@@ -29,10 +29,10 @@ const SidebarComponent = ({isOpen}) => {
                         <Sidebar.Item href="/products" icon={() => <HiShoppingBag className="text-white w-6 h-5" />} className="text-white hover:bg-black hover:bg-opacity-50">
                             Productos
                         </Sidebar.Item>
-                        <Sidebar.Item href="#" icon={() => <BiSolidCategory className="text-white w-6 h-5" />} className="text-white hover:bg-black hover:bg-opacity-50">
+                        <Sidebar.Item href="/categories" icon={() => <BiSolidCategory className="text-white w-6 h-5" />} className="text-white hover:bg-black hover:bg-opacity-50">
                             Categorias
                         </Sidebar.Item>
-                        <Sidebar.Item href="#" icon={() => <MdFilterList className="text-white w-6 h-5" />} className="text-white hover:bg-black hover:bg-opacity-50">
+                        <Sidebar.Item href="/subcategories" icon={() => <MdFilterList className="text-white w-6 h-5" />} className="text-white hover:bg-black hover:bg-opacity-50">
                             Subcategorias
                         </Sidebar.Item>
                         </Sidebar.ItemGroup>

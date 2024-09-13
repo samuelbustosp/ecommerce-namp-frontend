@@ -1,4 +1,5 @@
 import { HiComputerDesktop } from "react-icons/hi2";
+import CategoryContainer from "../components/admin/CategoryContainer";
 
 const Dashboard = () => {
     return (  
@@ -10,8 +11,13 @@ const Dashboard = () => {
                 </div>
                 <div className='ml-6'>
                     <p className="text-lg font-normal poppins-light text-gray-500 lg:text-xl dark:text-gray-400 mb-2">Administre su sistema de forma rápida y eficiente con este módulo.</p>
+                    
                 </div>
             </div>
+            <div className="bg-white ml-6 mr-6 mt-2 rounded-xl shadow-md">
+                
+            </div>
+
         </div>
         
     );
