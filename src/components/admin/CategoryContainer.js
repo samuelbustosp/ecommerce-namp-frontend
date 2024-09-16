@@ -3,6 +3,8 @@ import CategoryList from "./CategoryList";
 import AddCategoryModal from "./AddCategoryModal";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'flowbite-react'; // Modal de Flowbite
 import { IoMdAdd } from "react-icons/io";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
+import ErrorModal from "./ErrorModal";
 
 const CategoryContainer = () => {
     const [categories, setCategories] = useState([]);
@@ -48,10 +50,10 @@ const CategoryContainer = () => {
             }
             const data = await response.json();
             setCategories(prevCategories => [...prevCategories, data]);
-            setIsModalOpen(false); // Cerrar modal solo si el POST es exitoso
+            setIsModalOpen(false);
         } catch (error) {
             setError(error.message);
-            setIsErrorModalOpen(true); // Mostrar modal de error
+            setIsErrorModalOpen(true); 
         } finally {
             setLoading(false);
         }
@@ -75,11 +77,10 @@ const CategoryContainer = () => {
             setCategories(prevCategories =>
                 prevCategories.map(cat => cat.idCategory === id ? data : cat)
             );
-            setIsModalOpen(false); // Cerrar modal solo si el PUT es exitoso
+            setIsModalOpen(false); 
         } catch (error) {
             setError(error.message);
-            setIsErrorModalOpen(true); // Mostrar modal de error
-            // El modal de agregar categoría no se cierra en caso de error
+            setIsErrorModalOpen(true); 
         } finally {
             setLoading(false);
         }
@@ -99,7 +100,7 @@ const CategoryContainer = () => {
             );
         } catch (error) {
             setError(error.message);
-            setIsErrorModalOpen(true); // Mostrar modal de error
+            setIsErrorModalOpen(true); 
         } finally {
             setLoading(false);
         }
@@ -149,16 +150,10 @@ const CategoryContainer = () => {
                 onUpdateCategory={updateCategory}
                 categoryToEdit={editingCategory}
             />
-            {/* Modal de error independiente del modal de agregar */}
-            <Modal show={isErrorModalOpen} onClose={closeErrorModal}>
-                <ModalHeader>¡Ocurrió un error!</ModalHeader>
-                <ModalBody>
-                    <p>{error}</p>
-                </ModalBody>
-                <ModalFooter>
-                    <Button onClick={closeErrorModal}>Aceptar</Button>
-                </ModalFooter>
-            </Modal>
+            <ErrorModal 
+                isErrorModalOpen={isErrorModalOpen} closeErrorModal={closeErrorModal} 
+                error={error}
+            />
         </div>
     );
 };

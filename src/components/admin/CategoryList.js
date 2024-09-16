@@ -6,18 +6,21 @@ const CategoryList = ({categories, deleteCategory, onEditCategory}) => {
     
     return (  
         <div className="overflow-x-auto p-4">
-            <table className="min-w-full table-auto border-collapse border border-gray-200">
-                <thead className="bg-gray-100 rounded-xl text-left ">
+            <table className="min-w-full table-auto border-collapse border border-gray-200 shadow-md">
+                <thead className="bg-white rounded-xl text-left shadow">
                     <tr>
-                        <th className="px-4 py-2 border-b text-zinc-800 border-b-gray-300 poppins-bold">Codigo</th>
-                        <th className="px-4 py-2 border-b border-b-gray-300 poppins-bold">Nombre</th>
-                        <th className="px-4 py-2 border-b border-b-gray-300 poppins-bold">Descripción</th>
-                        <th className="px-4 py-2 border-b border-b-gray-300 poppins-bold">Acción</th>
+                        <th className="px-4 py-2 border-b text-zinc-800 border-b-gray-300 poppins-semibold">Codigo</th>
+                        <th className="px-4 py-2 border-b border-b-gray-300 poppins-semibold">Nombre</th>
+                        <th className="px-4 py-2 border-b border-b-gray-300 poppins-semibold">Descripción</th>
+                        <th className="px-4 py-2 border-b border-b-gray-300 poppins-semibold">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {categories.map(category => (
-                        <tr key={category.id}>
+                    {categories.map((category, index) => (
+                        <tr 
+                            key={category.id} 
+                            className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}  // Alterna entre gris claro y blanco
+                        >
                             <td className="px-4 py-2 border-b border-b-gray-300">{category.idCategory}</td>
                             <td className="px-4 py-2 border-b border-b-gray-300">{category.name}</td>
                             <td className="px-4 py-2 border-b border-b-gray-300">{category.description}</td>
@@ -40,7 +43,6 @@ const CategoryList = ({categories, deleteCategory, onEditCategory}) => {
                         </tr>
                     ))}
                 </tbody>
-
             </table>
         </div>
     );

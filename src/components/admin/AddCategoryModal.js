@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 
 const AddCategoryModal = ({ isOpen, onClose, onAddCategory, onUpdateCategory, categoryToEdit }) => {
     const [category, setCategory] = useState({ name: '', description: '' });
-    const [errorMessage, setErrorMessage] = useState(''); // Estado para el mensaje de error
 
     useEffect(() => {
         if (categoryToEdit) {
@@ -23,7 +22,6 @@ const AddCategoryModal = ({ isOpen, onClose, onAddCategory, onUpdateCategory, ca
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrorMessage(''); // Limpiar mensajes de error
         try {
             if (categoryToEdit) {
                 await onUpdateCategory(categoryToEdit.idCategory, category);
@@ -31,14 +29,13 @@ const AddCategoryModal = ({ isOpen, onClose, onAddCategory, onUpdateCategory, ca
                 await onAddCategory(category);
             }
             onClose();
-        } catch (error) {
-            setErrorMessage(error.message); // Mostrar el mensaje de error
+        } catch {
         }
     };
 
     return (
         <Modal show={isOpen} onClose={onClose}>
-            <ModalHeader>{categoryToEdit ? 'Editar Categoría' : 'Agregar Categoría'}</ModalHeader>
+            <ModalHeader><p className='poppins-bold text-2xl'>{categoryToEdit ? 'Editar Categoría' : 'Agregar Categoría'}</p></ModalHeader>
             <ModalBody>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
@@ -48,7 +45,7 @@ const AddCategoryModal = ({ isOpen, onClose, onAddCategory, onUpdateCategory, ca
                             name="name"
                             value={category.name}
                             onChange={handleInputChange}
-                            placeholder="Ingrese el nombre de la categoría"
+                            placeholder="Ingrese el nombre de la categoría."
                             required
                         />
                     </div>
@@ -59,16 +56,15 @@ const AddCategoryModal = ({ isOpen, onClose, onAddCategory, onUpdateCategory, ca
                             name="description"
                             value={category.description}
                             onChange={handleInputChange}
-                            placeholder="Ingrese la descripción de la categoría"
+                            placeholder="Ingrese la descripción de la categoría."
                             required
                         />
                     </div>
-                    
-                    <ModalFooter>
+                    <ModalFooter className='flex items-center justify-end'>
                         <Button color="gray" onClick={onClose}>
                             Cancelar
                         </Button>
-                        <Button color="blue" type="submit">
+                        <Button color="blue" type="submit" className=''>
                             {categoryToEdit ? 'Actualizar' : 'Agregar'}
                         </Button>
                     </ModalFooter>
