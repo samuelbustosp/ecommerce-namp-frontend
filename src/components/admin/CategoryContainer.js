@@ -5,6 +5,8 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'flowbite-rea
 import { IoMdAdd } from "react-icons/io";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import ErrorModal from "./ErrorModal";
+import { FaSearch } from "react-icons/fa";
+import { BsCursorText } from "react-icons/bs";
 
 const CategoryContainer = () => {
     const [categories, setCategories] = useState([]);
@@ -13,6 +15,8 @@ const CategoryContainer = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingCategory, setEditingCategory] = useState(null);
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false); // Estado para controlar el modal de error
+    const [searchTerm, setSearchTerm] = useState("");
+
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -121,23 +125,38 @@ const CategoryContainer = () => {
         setError(null);
     };
 
+    const filteredCategories = categories.filter(category =>
+        category.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     if (loading) {
         return <p>Loading...</p>;
     }
 
     return (
-        <div>
-            <div className="flex justify-end mr-4 mt-4">
+        <div className="mb-4">
+            <div className="flex justify-between mr-4 mt-4 gap-2">
+                <div className="flex items-center gap-2">
+                    <input 
+                        type="text" 
+                        placeholder="Buscar por nombre..."
+                        className="p-2 ml-4 border border-gray-300 rounded"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}  // Actualizar el término de búsqueda
+                    />
+                    <FaSearch className="text-lg text-zinc-700 ml-1.5"/>
+                </div>
+                
                 <button
                     onClick={handleAddCategoryClick}
-                    className="bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg px-2 py-2 flex items-center"
+                    className="bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg p-2 flex items-center"
                 >
                     <span><IoMdAdd/></span>
                     Agregar
                 </button>
             </div>
             <CategoryList
-                categories={categories}
+                categories={filteredCategories}
                 updateCategory={updateCategory}
                 deleteCategory={deleteCategory}
                 addCategory={addCategory}
