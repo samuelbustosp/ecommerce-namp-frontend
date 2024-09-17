@@ -1,6 +1,6 @@
 import { FaThList } from "react-icons/fa";
 
-import CategoryContainer from "../components/admin/CategoryContainer";
+import CategoryContainer from "../components/admin/category/CategoryContainer";
 
 const CategoryPage = () => {
     return (  

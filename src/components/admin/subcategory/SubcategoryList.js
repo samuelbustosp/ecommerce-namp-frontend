@@ -3,9 +3,7 @@ import { FaEdit, FaSort } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import { useState } from "react";
 
-
-
-const CategoryList = ({categories, deleteCategory, onEditCategory}) => {
+const SubcategoryList = ({ subcategories, deleteSubcategory, onEditSubcategory }) => {
     const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ASC' });
 
     const handleSort = (columnKey) => {
@@ -16,7 +14,7 @@ const CategoryList = ({categories, deleteCategory, onEditCategory}) => {
         setSortConfig({ key: columnKey, direction });
     };
 
-    const sortedCategories = [...categories].sort((a, b) => {
+    const sortedSubcategories = [...subcategories].sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
             return sortConfig.direction === 'ASC' ? -1 : 1;
         }
@@ -26,7 +24,7 @@ const CategoryList = ({categories, deleteCategory, onEditCategory}) => {
         return 0;
     });
 
-    const handleClickDelete = (idCategory) => {
+    const handleClickDelete = (idSubcategory) => {
         Swal.fire({
             title: "¿Estás seguro?",
             text: "¡No podrás revertir esto!",
@@ -38,27 +36,26 @@ const CategoryList = ({categories, deleteCategory, onEditCategory}) => {
             confirmButtonText: 'Sí, eliminar'
         }).then((result) => {
             if (result.isConfirmed) {
-                deleteCategory(idCategory);  // Llama a la función de eliminación si se confirma
+                deleteSubcategory(idSubcategory);
                 Swal.fire({
                     title: 'Eliminado!',
-                    text: 'La categoría ha sido eliminada.',
+                    text: 'La subcategoría ha sido eliminada.',
                     icon: 'success',
                     confirmButtonColor: '#057a55',
                 });
             }
         });
-    }
-    
-    return (  
+    };
+
+    return (
         <div className="overflow-x-auto p-4">
-            
             <table className="min-w-full table-auto border-collapse border border-gray-200 shadow-md">
                 <thead className="bg-white rounded-xl text-left shadow">
                     <tr>
                         <th className="px-4 py-2 border-b text-zinc-800 border-b-gray-300 poppins-semibold">
                             <div className="flex items-center">
                                 Codigo
-                                <button onClick={() => handleSort('idCategory')} className="ml-2 ">
+                                <button onClick={() => handleSort('idSubcategory')} className="ml-2">
                                     <FaSort className="text-zinc-700" />
                                 </button>
                             </div>
@@ -66,7 +63,7 @@ const CategoryList = ({categories, deleteCategory, onEditCategory}) => {
                         <th className="px-4 py-2 border-b border-b-gray-300 poppins-semibold">
                             <div className="flex items-center">
                                 Nombre
-                                <button onClick={() => handleSort('name')} className="ml-2 ">
+                                <button onClick={() => handleSort('name')} className="ml-2">
                                     <FaSort className="text-zinc-700"/>
                                 </button>
                             </div>
@@ -74,7 +71,7 @@ const CategoryList = ({categories, deleteCategory, onEditCategory}) => {
                         <th className="px-4 py-2 border-b border-b-gray-300 poppins-semibold">
                             <div className="flex items-center">
                                 Descripción
-                                <button onClick={() => handleSort('description')} className="ml-2 ">
+                                <button onClick={() => handleSort('description')} className="ml-2">
                                     <FaSort className="text-zinc-700"/>
                                 </button>
                             </div>
@@ -83,36 +80,40 @@ const CategoryList = ({categories, deleteCategory, onEditCategory}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {sortedCategories.map((category, index) => (
-                        <tr 
-                            key={category.id} 
-                            className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}  // Alterna entre gris claro y blanco
-                        >
-                            <td className="px-4 py-2 border-b border-b-gray-300">{category.idCategory}</td>
-                            <td className="px-4 py-2 border-b border-b-gray-300">{category.name}</td>
-                            <td className="px-4 py-2 border-b border-b-gray-300">{category.description}</td>
-                            <td className="px-4 py-2 border-b border-b-gray-300">
-                                <div className="flex items-center">
-                                    <button 
-                                        className="text-green-600 text-2xl hover:text-green-500" 
-                                        onClick={()=>onEditCategory(category)}
-                                    >
-                                        <FaEdit/>
-                                    </button>
-                                    <button 
-                                        className="text-red-600 text-3xl hover:text-red-500" 
-                                        onClick={()=>handleClickDelete(category.idCategory)}
-                                    > 
-                                        <TiDelete/>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
+                    {sortedSubcategories.map((subcategory, index) => {
+                        console.log('Subcategory:', subcategory);  // Log para verificar los datos
+                        return (
+                            <tr 
+                                key={subcategory.idSubcategory} 
+                                className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                            >
+                                <td className="px-4 py-2 border-b border-b-gray-300">{subcategory.idSubcategory}</td>
+                                <td className="px-4 py-2 border-b border-b-gray-300">{subcategory.name}</td>
+                                <td className="px-4 py-2 border-b border-b-gray-300">{subcategory.description}</td>
+
+                                <td className="px-4 py-2 border-b border-b-gray-300">
+                                    <div className="flex items-center">
+                                        <button 
+                                            className="text-green-600 text-2xl hover:text-green-500" 
+                                            onClick={() => onEditSubcategory(subcategory)}
+                                        >
+                                            <FaEdit />
+                                        </button>
+                                        <button 
+                                            className="text-red-600 text-3xl hover:text-red-500" 
+                                            onClick={() => handleClickDelete(subcategory.idSubcategory)}
+                                        > 
+                                            <TiDelete />
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </div>
     );
 }
- 
-export default CategoryList;
+
+export default SubcategoryList;

@@ -1,5 +1,5 @@
 import { HiComputerDesktop } from "react-icons/hi2";
-import CategoryContainer from "../components/admin/CategoryContainer";
+import CategoryContainer from "../components/admin/category/CategoryContainer";
 
 const Dashboard = () => {
     return (  
@@ -17,7 +17,6 @@ const Dashboard = () => {
             <div className="bg-white ml-6 mr-6 mt-2 rounded-xl shadow-md">
                 
             </div>
-
         </div>
         
     );

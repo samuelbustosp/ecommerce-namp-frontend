@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import CategoryList from "./CategoryList";
 import AddCategoryModal from "./AddCategoryModal";
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'flowbite-react'; // Modal de Flowbite
+import { Spinner } from 'flowbite-react'; 
 import { IoMdAdd } from "react-icons/io";
-import { HiOutlineExclamationCircle } from "react-icons/hi";
-import ErrorModal from "./ErrorModal";
+import ErrorModal from "../ErrorModal";
 import { FaSearch } from "react-icons/fa";
-import { BsCursorText } from "react-icons/bs";
+
 
 const CategoryContainer = () => {
     const [categories, setCategories] = useState([]);
@@ -32,7 +31,10 @@ const CategoryContainer = () => {
                 setError(error.message);
                 setIsErrorModalOpen(true); // Mostrar modal de error
             } finally {
-                setLoading(false);
+                setTimeout(()=>{
+                    setLoading(false);
+                },1000)
+                
             }
         };
         fetchCategories();
@@ -130,8 +132,13 @@ const CategoryContainer = () => {
     );
 
     if (loading) {
-        return <p>Loading...</p>;
+        return (
+            <div className="bottom-1/2 flex justify-center items-center h-80">
+                <Spinner size="lg" />
+            </div>
+        )
     }
+
 
     return (
         <div className="mb-4">

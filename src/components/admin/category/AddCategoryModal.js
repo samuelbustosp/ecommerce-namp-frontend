@@ -32,6 +32,7 @@ const AddCategoryModal = ({ isOpen, onClose, onAddCategory, onUpdateCategory, ca
         } catch {
         }
     };
+    
 
     return (
         <Modal show={isOpen} onClose={onClose}>

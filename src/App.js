@@ -5,7 +5,7 @@ import AdminLayout from './layout/admin/AdminLayout';
 import ProductPage from './pages/ProductPage';
 import CategoryPage from './pages/CategoryPage';
 import SubcategoryPage from './pages/SubcategoryPage';
-import CategoryForm from './components/admin/AddCategoryModal';
+import CategoryForm from './components/admin/category/AddCategoryModal';
 
 function App() {
   
