@@ -104,7 +104,7 @@ const SubcategoryList = ({ subcategories, deleteSubcategory, onEditSubcategory }
                                     {subcategory.description}
                                 </td>
                                 <td className="px-4 py-2 border-b border-b-gray-300">
-                                    {subcategory.idCategory.name}
+                                    {subcategory.categoryName}
                                 </td>
                                 <td className="px-4 py-2 border-b border-b-gray-300">
                                     <div className="flex items-center">

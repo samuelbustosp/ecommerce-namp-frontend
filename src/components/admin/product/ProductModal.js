@@ -2,7 +2,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button, TextInput, Select }
 import { useState, useEffect, useMemo } from 'react';
 
 const ProductModal = ({ isOpen, onClose, onAddProduct, onUpdateProduct, productToEdit, subcategories = [] }) => {
-    const [product, setProduct] = useState({ name: '', description: '', img:'', stock: null, price: null, idSubcategory: null });
+    const [product, setProduct] = useState({ name: '', description: '', img:'', stock: '', price: '', idSubcategory: null });
     const [selectedSubcategory, setSelectedSubcategory] = useState(null);
     const [file, setFile] = useState(null);
     const [query, setQuery] = useState('');
@@ -19,7 +19,7 @@ const ProductModal = ({ isOpen, onClose, onAddProduct, onUpdateProduct, productT
             });
             setSelectedSubcategory(subcategories.find(subcat => subcat.idSubcategory === productToEdit.idSubcategory));
         } else {
-            setProduct({ name: '', description: '', img:'', stock: null, price: null, idSubcategory: null });
+            setProduct({ name: '', description: '', img:'', stock: '', price: '', idSubcategory: null });
             setSelectedSubcategory(null);
             setFile(null);
         }

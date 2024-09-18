@@ -35,7 +35,7 @@ const ProductContainer = () => {
                 }, 800); 
             }
         };
-    
+
         const fetchSubcategories = async () => {
             try {
                 const response = await fetch("http://localhost:8080/api-namp/subcategory");

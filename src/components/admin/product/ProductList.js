@@ -109,7 +109,7 @@ const ProductList = ({products, deleteProduct, onEditProduct}) => {
                             <td className="px-4 py-2 border-b border-b-gray-300">{product.idProduct}</td>
                             <td className="px-4 py-2 border-b border-b-gray-300">{product.name}</td>
                             <td className="px-4 py-2 border-b border-b-gray-300">{product.description}</td>
-                            <td className="px-4 py-2 border-b border-b-gray-300">{product.idSubcategory.name}</td>
+                            <td className="px-4 py-2 border-b border-b-gray-300">{product.subcategoryName}</td>
                             <td className="px-4 py-2 border-b border-b-gray-300">
                                 <div className="flex items-center">
                                     <button 
