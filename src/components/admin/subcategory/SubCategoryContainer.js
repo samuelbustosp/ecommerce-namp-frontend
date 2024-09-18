@@ -19,26 +19,7 @@ const SubcategoryContainer = () => {
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        const fetchSubcategories = async () => {
-            setLoading(true);
-            try {
-                const response = await fetch("http://localhost:8080/api-namp/subcategory");
-                if (!response.ok) {
-                    throw new Error('Error al obtener las subcategorías');
-                }
-                const data = await response.json();
-                 // Verifica la estructura de los datos
-                setSubcategories(data); // Asignar los datos al estado
-            } catch (error) {
-                setError(error.message);
-                setIsErrorModalOpen(true);
-            } finally {
-                setTimeout(() => {
-                    setLoading(false);
-                }, 800); 
-            }
-        };
-    
+
         const fetchCategories = async () => {
             try {
                 const response = await fetch("http://localhost:8080/api-namp/category");
@@ -57,7 +38,25 @@ const SubcategoryContainer = () => {
         fetchCategories();
     }, []);
     
-    
+    const fetchSubcategories = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch("http://localhost:8080/api-namp/subcategory");
+            if (!response.ok) {
+                throw new Error('Error al obtener las subcategorías');
+            }
+            const data = await response.json();
+             // Verifica la estructura de los datos
+            setSubcategories(data); // Asignar los datos al estado
+        } catch (error) {
+            setError(error.message);
+            setIsErrorModalOpen(true);
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 800); 
+        }
+    };
 
     const addSubcategory = async (newSubcategory) => {
         setLoading(true);
@@ -73,8 +72,8 @@ const SubcategoryContainer = () => {
                 const errorText = await response.text();
                 throw new Error(errorText || 'Error al agregar la subcategoría');
             }
-            const data = await response.json();
-            setSubcategories(prevSubcategories => [...prevSubcategories, data]);
+            
+            await fetchSubcategories();
             setIsModalOpen(false);
         } catch (error) {
             setError(error.message);
@@ -98,10 +97,8 @@ const SubcategoryContainer = () => {
                 const errorText = await response.text();
                 throw new Error(errorText || 'Error al actualizar la subcategoría');
             }
-            const data = await response.json();
-            setSubcategories(prevSubcategories =>
-                prevSubcategories.map(cat => cat.idSubcategory === id ? data : cat)
-            );
+            
+            await fetchSubcategories();
             setIsModalOpen(false); 
         } catch (error) {
             setError(error.message);
@@ -120,9 +117,8 @@ const SubcategoryContainer = () => {
             if (!response.ok) {
                 throw new Error('Error al eliminar la subcategoría');
             }
-            setSubcategories(prevSubcategories =>
-                prevSubcategories.filter(subcat => subcat.idSubcategory !== id)
-            );
+
+            await fetchSubcategories();
         } catch (error) {
             setError(error.message);
             setIsErrorModalOpen(true); 

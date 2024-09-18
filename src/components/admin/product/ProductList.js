@@ -97,7 +97,7 @@ const ProductList = ({products, deleteProduct, onEditProduct}) => {
                 <tbody>
                     {sortedProducts.map((product, index) => (
                         <tr 
-                            key={product.id} 
+                            key={product.idProduct} 
                             className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}  // Alterna entre gris claro y blanco
                         >
                             <td className="px-4 py-2 border-b border-b-gray-300">

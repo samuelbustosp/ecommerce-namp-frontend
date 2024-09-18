@@ -18,26 +18,28 @@ const CategoryContainer = () => {
 
 
     useEffect(() => {
-        const fetchCategories = async () => {
-            setLoading(true);
-            try {
-                const response = await fetch("http://localhost:8080/api-namp/category");
-                if (!response.ok) {
-                    throw new Error('Error al traer las categorías');
-                }
-                const data = await response.json();
-                setCategories(data);
-            } catch (error) {
-                setError(error.message);
-                setIsErrorModalOpen(true); // Mostrar modal de error
-            } finally {
-                setTimeout(()=>{
-                    setLoading(false);
-                },800)
-            }
-        };
+
         fetchCategories();
     }, []);
+
+    const fetchCategories = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch("http://localhost:8080/api-namp/category");
+            if (!response.ok) {
+                throw new Error('Error al traer las categorías');
+            }
+            const data = await response.json();
+            setCategories(data);
+        } catch (error) {
+            setError(error.message);
+            setIsErrorModalOpen(true); // Mostrar modal de error
+        } finally {
+            setTimeout(()=>{
+                setLoading(false);
+            },800)
+        }
+    };
 
     const addCategory = async (newCategory) => {
         setLoading(true);
@@ -53,8 +55,8 @@ const CategoryContainer = () => {
                 const errorText = await response.text();
                 throw new Error(errorText || 'Error al agregar la categoría');
             }
-            const data = await response.json();
-            setCategories(prevCategories => [...prevCategories, data]);
+
+            await fetchCategories();
             setIsModalOpen(false);
         } catch (error) {
             setError(error.message);
@@ -78,10 +80,7 @@ const CategoryContainer = () => {
                 const errorText = await response.text();
                 throw new Error(errorText || 'Error al actualizar la categoría');
             }
-            const data = await response.json();
-            setCategories(prevCategories =>
-                prevCategories.map(cat => cat.idCategory === id ? data : cat)
-            );
+            await fetchCategories();
             setIsModalOpen(false); 
         } catch (error) {
             setError(error.message);
@@ -100,9 +99,7 @@ const CategoryContainer = () => {
             if (!response.ok) {
                 throw new Error('Error al eliminar la categoría');
             }
-            setCategories(prevCategories =>
-                prevCategories.filter(cat => cat.idCategory !== id)
-            );
+            await fetchCategories();
         } catch (error) {
             setError(error.message);
             setIsErrorModalOpen(true); 

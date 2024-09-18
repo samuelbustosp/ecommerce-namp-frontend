@@ -17,25 +17,6 @@ const ProductContainer = () => {
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        const fetchProduct = async () => {
-            setLoading(true);
-            try {
-                const response = await fetch("http://localhost:8080/api-namp/product");
-                if (!response.ok) {
-                    throw new Error('Error al obtener las subcategorías');
-                }
-                const data = await response.json();
-                setProducts(data);
-            } catch (error) {
-                setError(error.message);
-                setIsErrorModalOpen(true);
-            } finally {
-                setTimeout(() => {
-                    setLoading(false);
-                }, 800); 
-            }
-        };
-
         const fetchSubcategories = async () => {
             try {
                 const response = await fetch("http://localhost:8080/api-namp/subcategory");
@@ -54,6 +35,24 @@ const ProductContainer = () => {
         fetchSubcategories();
     }, []);
     
+    const fetchProduct = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch("http://localhost:8080/api-namp/product");
+            if (!response.ok) {
+                throw new Error('Error al obtener las subcategorías');
+            }
+            const data = await response.json();
+            setProducts(data);
+        } catch (error) {
+            setError(error.message);
+            setIsErrorModalOpen(true);
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 800); 
+        }
+    };
 
     const addProduct = async (product, file) => {
         setLoading(true);
@@ -71,8 +70,8 @@ const ProductContainer = () => {
                 const errorText = await response.text();
                 throw new Error(errorText || 'Error al agregar la subcategoría');
             }
-            const data = await response.json();
-            setProducts(prevProducts => [...prevProducts, data]);
+            
+            await fetchProduct();
             setIsModalOpen(false);
         } catch (error) {
             setError(error.message);
@@ -100,10 +99,8 @@ const ProductContainer = () => {
                 const errorText = await response.text();
                 throw new Error(errorText || 'Error al actualizar la subcategoría');
             }
-            const data = await response.json();
-            setProducts(prevProducts =>
-                prevProducts.map(prod => prod.idProduct === id ? data : prod)
-            );
+
+            await fetchProduct();
             setIsModalOpen(false); 
         } catch (error) {
             setError(error.message);
@@ -123,9 +120,7 @@ const ProductContainer = () => {
             if (!response.ok) {
                 throw new Error('Error al eliminar la subcategoría');
             }
-            setProducts(prevProducts =>
-                prevProducts.filter(prod => prod.idProduct !== id)
-            );
+            await fetchProduct();
         } catch (error) {
             setError(error.message);
             setIsErrorModalOpen(true); 

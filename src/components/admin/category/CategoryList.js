@@ -83,7 +83,7 @@ const CategoryList = ({categories, deleteCategory, onEditCategory}) => {
                 <tbody>
                     {sortedCategories.map((category, index) => (
                         <tr 
-                            key={category.id} 
+                            key={category.idCategory} 
                             className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}  // Alterna entre gris claro y blanco
                         >
                             <td className="px-4 py-2 border-b border-b-gray-300">{category.idCategory}</td>
