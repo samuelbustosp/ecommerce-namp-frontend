@@ -19,7 +19,7 @@ const AddSubcategoryModal = ({ isOpen, onClose, onAddSubcategory, onUpdateSubcat
             setSelectedCategory(null);
         }
     }, [subcategoryToEdit, categories]);
-
+    
     const filteredOptions = useMemo(() => 
         categories
             .filter(option => 
@@ -50,7 +50,6 @@ const AddSubcategoryModal = ({ isOpen, onClose, onAddSubcategory, onUpdateSubcat
                 description: subcategory.description,
                 idCategory: selectedCategory // Enviar el objeto completo
             };
-    
             if (subcategoryToEdit) {
                 await onUpdateSubcategory(subcategoryToEdit.idSubcategory, subcategoryToSend);
             } else {

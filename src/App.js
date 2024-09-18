@@ -6,6 +6,8 @@ import ProductPage from './pages/ProductPage';
 import CategoryPage from './pages/CategoryPage';
 import SubcategoryPage from './pages/SubcategoryPage';
 import CategoryForm from './components/admin/category/AddCategoryModal';
+import ClientLayout from './layout/client/ClientLayout';
+import Home from './pages/client/Home';
 
 function App() {
   
@@ -20,6 +22,11 @@ function App() {
             <Route path="subcategories" element={<SubcategoryPage/>}/>
             <Route path="add-category" element={<CategoryForm/>}/>
           </Route>
+
+          <Route path="/" element={<ClientLayout/>}>
+            <Route path="home" element={<Home/>}/>
+          </Route>
+
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,4 +1,5 @@
 import { RiShoppingBag4Fill } from "react-icons/ri";
+import ProductContainer from "../components/admin/product/ProductContainer";
 
 
 const ProductPage = () => {
@@ -14,7 +15,7 @@ const ProductPage = () => {
                 </div>
             </div>
             <div className="bg-white ml-6 mr-6 mt-2 rounded-xl shadow-md">
-                
+                <ProductContainer/>
             </div>
         </div>
      );

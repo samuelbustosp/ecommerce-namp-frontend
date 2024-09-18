@@ -13,7 +13,7 @@ const CategoryContainer = () => {
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingCategory, setEditingCategory] = useState(null);
-    const [isErrorModalOpen, setIsErrorModalOpen] = useState(false); // Estado para controlar el modal de error
+    const [isErrorModalOpen, setIsErrorModalOpen] = useState(false); 
     const [searchTerm, setSearchTerm] = useState("");
 
 
@@ -33,8 +33,7 @@ const CategoryContainer = () => {
             } finally {
                 setTimeout(()=>{
                     setLoading(false);
-                },1000)
-                
+                },800)
             }
         };
         fetchCategories();

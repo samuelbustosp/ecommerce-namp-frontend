@@ -2,33 +2,30 @@ import { useEffect, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import ErrorModal from "../ErrorModal";
 import { FaSearch } from "react-icons/fa";
-import SubcategoryList from "./SubcategoryList";
-import AddSubcategoryModal from "./AddSubcategoryModal";
 import { Spinner } from "flowbite-react";
-import CategoryContainer from "../category/CategoryContainer";
-import CategoryList from "../category/CategoryList";
+import ProductList from "./ProductList"
+import ProductModal from "./ProductModal"
 
-const SubcategoryContainer = () => {
+const ProductContainer = () => {
     const [subcategories, setSubcategories] = useState([]);
-    const [categories, setCategories] = useState([]);
+    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false); 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editingSubcategory, setEditingSubcategory] = useState(null);
+    const [editingProduct, setEditingProduct] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        const fetchSubcategories = async () => {
+        const fetchProduct = async () => {
             setLoading(true);
             try {
-                const response = await fetch("http://localhost:8080/api-namp/subcategory");
+                const response = await fetch("http://localhost:8080/api-namp/product");
                 if (!response.ok) {
                     throw new Error('Error al obtener las subcategorías');
                 }
                 const data = await response.json();
-                 // Verifica la estructura de los datos
-                setSubcategories(data); // Asignar los datos al estado
+                setProducts(data);
             } catch (error) {
                 setError(error.message);
                 setIsErrorModalOpen(true);
@@ -39,42 +36,43 @@ const SubcategoryContainer = () => {
             }
         };
     
-        const fetchCategories = async () => {
+        const fetchSubcategories = async () => {
             try {
-                const response = await fetch("http://localhost:8080/api-namp/category");
+                const response = await fetch("http://localhost:8080/api-namp/subcategory");
                 if (!response.ok) {
-                    throw new Error('Error al obtener las categorías');
+                    throw new Error('Error al obtener las subcategorías');
                 }
                 const data = await response.json();
-                setCategories(data); // Asignar los datos al estado
+                setSubcategories(data);
             } catch (error) {
                 setError(error.message);
                 setIsErrorModalOpen(true);
             }
         };
-    
+
+        fetchProduct();
         fetchSubcategories();
-        fetchCategories();
     }, []);
     
-    
 
-    const addSubcategory = async (newSubcategory) => {
+    const addProduct = async (product, file) => {
         setLoading(true);
         try {
-            const response = await fetch("http://localhost:8080/api-namp/subcategory", {
+            const formData = new FormData();
+            formData.append('product', JSON.stringify(product));
+            formData.append('file', file);
+
+            const response = await fetch("http://localhost:8080/api-namp/product", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(newSubcategory)
+                body: formData
             });
+
             if (!response.ok) {
                 const errorText = await response.text();
                 throw new Error(errorText || 'Error al agregar la subcategoría');
             }
             const data = await response.json();
-            setSubcategories(prevSubcategories => [...prevSubcategories, data]);
+            setProducts(prevProducts => [...prevProducts, data]);
             setIsModalOpen(false);
         } catch (error) {
             setError(error.message);
@@ -84,23 +82,27 @@ const SubcategoryContainer = () => {
         }
     };
 
-    const updateSubcategory = async (id, updateSubcategory) => {
+    const updateProduct = async (id, updatedProduct, file) => {
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:8080/api-namp/subcategory/${id}`, {
+            const formData = new FormData();
+            formData.append('product', JSON.stringify(updatedProduct));
+            if (file) {
+                formData.append('file', file);
+            }
+    
+            const response = await fetch(`http://localhost:8080/api-namp/product/${id}`, {
                 method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(updateSubcategory)
+                body: formData
             });
+
             if (!response.ok) {
                 const errorText = await response.text();
                 throw new Error(errorText || 'Error al actualizar la subcategoría');
             }
             const data = await response.json();
-            setSubcategories(prevSubcategories =>
-                prevSubcategories.map(cat => cat.idSubcategory === id ? data : cat)
+            setProducts(prevProducts =>
+                prevProducts.map(prod => prod.idProduct === id ? data : prod)
             );
             setIsModalOpen(false); 
         } catch (error) {
@@ -110,18 +112,19 @@ const SubcategoryContainer = () => {
             setLoading(false);
         }
     };
-
-    const deleteSubcategory = async (id) => {
+    
+    const deleteProduct = async (id) => {
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:8080/api-namp/subcategory/${id}`, {
+            
+            const response = await fetch(`http://localhost:8080/api-namp/product/${id}`, {
                 method: "DELETE"
             });
             if (!response.ok) {
                 throw new Error('Error al eliminar la subcategoría');
             }
-            setSubcategories(prevSubcategories =>
-                prevSubcategories.filter(subcat => subcat.idSubcategory !== id)
+            setProducts(prevProducts =>
+                prevProducts.filter(prod => prod.idProduct !== id)
             );
         } catch (error) {
             setError(error.message);
@@ -131,13 +134,14 @@ const SubcategoryContainer = () => {
         }
     };
 
-    const handleAddSubcategoryClick = () => {
-        setEditingSubcategory(null);
+
+    const handleAddProductClick = () => {
+        setEditingProduct(null);
         setIsModalOpen(true);
     };
 
-    const editSubcategoryHandler = (category) => {
-        setEditingSubcategory(category);
+    const editProductHandler = (subcategory) => {
+        setEditingProduct(subcategory);
         setIsModalOpen(true);
     };
 
@@ -145,10 +149,6 @@ const SubcategoryContainer = () => {
         setIsErrorModalOpen(false);
         setError(null);
     };
-
-    const filteredSubcategories = subcategories.filter(subcategory =>
-        subcategory.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
 
     if (loading) {
         return (
@@ -172,27 +172,27 @@ const SubcategoryContainer = () => {
                 </div>
                 
                 <button
-                    onClick={handleAddSubcategoryClick}
+                    onClick={handleAddProductClick}
                     className="bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg p-2 flex items-center"
                 >
                     <span><IoMdAdd/></span>
                     Agregar
                 </button>
             </div>
-            <SubcategoryList
-                subcategories={filteredSubcategories}
-                updateSubcategory={updateSubcategory}
-                deleteSubcategory={deleteSubcategory}
-                addSubcategory={addSubcategory}
-                onEditSubcategory={editSubcategoryHandler}
+            <ProductList
+                products={products}
+                updateProduct={updateProduct}
+                deleteProduct={deleteProduct}
+                addProduct={addProduct}
+                onEditProduct={editProductHandler}
             />
-            <AddSubcategoryModal
+            <ProductModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                onAddSubcategory={addSubcategory}
-                onUpdateSubcategory={updateSubcategory}
-                subcategoryToEdit={editingSubcategory}
-                categories={categories}
+                onAddProduct={addProduct}
+                onUpdateProduct={updateProduct}
+                productToEdit={editingProduct}
+                subcategories={subcategories}
             />
             <ErrorModal 
                 isErrorModalOpen={isErrorModalOpen} closeErrorModal={closeErrorModal} 
@@ -202,4 +202,4 @@ const SubcategoryContainer = () => {
     );
 }
  
-export default SubcategoryContainer;
+export default ProductContainer;
