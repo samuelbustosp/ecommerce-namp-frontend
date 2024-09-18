@@ -38,11 +38,17 @@ const ProductContainer = () => {
     const fetchProduct = async () => {
         setLoading(true);
         try {
-            const response = await fetch("http://localhost:8080/api-namp/product");
+            const response = await fetch("http://localhost:8080/api-namp/product", {
+                method: 'GET',
+                mode: 'cors' // Asegúrate de que CORS esté habilitado
+            });
+
             if (!response.ok) {
                 throw new Error('Error al obtener las subcategorías');
             }
+
             const data = await response.json();
+            
             setProducts(data);
         } catch (error) {
             setError(error.message);
