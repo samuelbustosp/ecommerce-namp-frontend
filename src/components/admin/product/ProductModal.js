@@ -8,7 +8,6 @@ const ProductModal = ({ isOpen, onClose, onAddProduct, onUpdateProduct, productT
 
     useEffect(() => {
         if (productToEdit) {
-            console.log("Producto para editar", productToEdit)
             setProduct({
                 name: productToEdit.name,
                 description: productToEdit.description,
