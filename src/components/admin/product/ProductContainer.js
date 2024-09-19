@@ -48,7 +48,7 @@ const ProductContainer = () => {
             }
 
             const data = await response.json();
-            
+
             setProducts(data);
         } catch (error) {
             setError(error.message);
@@ -78,6 +78,7 @@ const ProductContainer = () => {
             }
             
             await fetchProduct();
+            
             setIsModalOpen(false);
         } catch (error) {
             setError(error.message);

@@ -3,24 +3,23 @@ import { useState, useEffect, useMemo } from 'react';
 
 const ProductModal = ({ isOpen, onClose, onAddProduct, onUpdateProduct, productToEdit, subcategories = [] }) => {
     const [product, setProduct] = useState({ name: '', description: '', img:'', stock: '', price: '', idSubcategory: null });
-    const [selectedSubcategory, setSelectedSubcategory] = useState(null);
     const [file, setFile] = useState(null);
     const [query, setQuery] = useState('');
 
     useEffect(() => {
         if (productToEdit) {
+            console.log("Producto para editar", productToEdit)
             setProduct({
                 name: productToEdit.name,
                 description: productToEdit.description,
                 img: productToEdit.img,
                 stock: productToEdit.stock,
                 price: productToEdit.price,
-                idSubcategory: productToEdit.idSubcategory
+                idSubcategory: productToEdit.idSubcategory.idSubcategory
             });
-            setSelectedSubcategory(subcategories.find(subcat => subcat.idSubcategory === productToEdit.idSubcategory));
+
         } else {
             setProduct({ name: '', description: '', img:'', stock: '', price: '', idSubcategory: null });
-            setSelectedSubcategory(null);
             setFile(null);
         }
     }, [productToEdit, subcategories]);
@@ -139,6 +138,7 @@ const ProductModal = ({ isOpen, onClose, onAddProduct, onUpdateProduct, productT
                             value={product.idSubcategory || ''}
                             onChange={handleSubcategoryChange}
                         >
+                            <option disabled value="">Seleccionar subcategoría</option>
                             {filteredOptions.map((subcat) => (
                                 <option key={subcat.idSubcategory} value={subcat.idSubcategory}>
                                     {subcat.name}

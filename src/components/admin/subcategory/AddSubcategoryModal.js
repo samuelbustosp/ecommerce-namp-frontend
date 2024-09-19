@@ -8,12 +8,16 @@ const AddSubcategoryModal = ({ isOpen, onClose, onAddSubcategory, onUpdateSubcat
 
     useEffect(() => {
         if (subcategoryToEdit) {
+
+            console.log("subcategoria para editar", subcategoryToEdit);
+
             setSubcategory({
                 name: subcategoryToEdit.name,
                 description: subcategoryToEdit.description,
-                idCategory: subcategoryToEdit.idCategory
+                idCategory: subcategoryToEdit.idCategory.idCategory
             });
-            setSelectedCategory(categories.find(c => c.idCategory === subcategoryToEdit.idCategory));
+
+            setSelectedCategory(categories.find(c => c.idCategory === subcategoryToEdit.idCategory.idCategory));
         } else {
             setSubcategory({ name: '', description: '', idCategory: null });
             setSelectedCategory(null);
@@ -97,6 +101,7 @@ const AddSubcategoryModal = ({ isOpen, onClose, onAddSubcategory, onUpdateSubcat
                             value={selectedCategory ? selectedCategory.idCategory : ''}
                             onChange={handleCategoryChange}
                         >
+                            <option disabled value="">Seleccionar categoría</option>
                             {filteredOptions.map((category) => (
                                 <option key={category.idCategory} value={category.idCategory}>
                                     {category.name}
