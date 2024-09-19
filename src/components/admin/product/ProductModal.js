@@ -17,11 +17,20 @@ const ProductModal = ({ isOpen, onClose, onAddProduct, onUpdateProduct, productT
                 idSubcategory: productToEdit.idSubcategory.idSubcategory
             });
 
+            //setFile(null); // Restablece el file cuando se carga un producto para editar
+
         } else {
             setProduct({ name: '', description: '', img:'', stock: '', price: '', idSubcategory: null });
             setFile(null);
         }
     }, [productToEdit, subcategories]);
+
+    // Efecto para restablecer el estado del archivo cuando se cierra el modal
+    useEffect(() => {
+        if (!isOpen) {
+            setFile(null);
+        }
+    }, [isOpen]);
 
     const filteredOptions = useMemo(() => 
         subcategories
@@ -147,6 +156,15 @@ const ProductModal = ({ isOpen, onClose, onAddProduct, onUpdateProduct, productT
                     </div>
                     <div className="mb-4">
                         <label htmlFor="file" className="block text-sm font-medium text-gray-700">Imagen</label>
+                        {/* Si hay una imagen, se muestra una vista previa */}
+                        <div className="mb-4">
+                            <img 
+                                src={file ? URL.createObjectURL(file) : `${process.env.REACT_APP_IMAGES_URL}${product.img}`} 
+                                alt="Vista previa del producto" 
+                                className="w-20 h-20 object-cover" 
+                            />
+                        </div>
+
                         <input
                             id="file"
                             type="file"
