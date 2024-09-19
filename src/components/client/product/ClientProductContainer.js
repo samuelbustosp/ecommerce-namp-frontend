@@ -6,10 +6,6 @@ const ClientProductContainer = () => {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editingProduct, setEditingProduct] = useState(null);
-    const [isErrorModalOpen, setIsErrorModalOpen] = useState(false); // Estado para controlar el modal de error
-    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -17,13 +13,12 @@ const ClientProductContainer = () => {
             try {
                 const response = await fetch("http://localhost:8080/api-namp/product");
                 if (!response.ok) {
-                    throw new Error('Error al traer las categorías');
+                    throw new Error('Error al traer los productos');
                 }
                 const data = await response.json();
                 setProducts(data);
             } catch (error) {
                 setError(error.message);
-                setIsErrorModalOpen(true); // Mostrar modal de error
             } finally {
                 setTimeout(()=>{
                     setLoading(false);
@@ -42,12 +37,13 @@ const ClientProductContainer = () => {
             </div>
         )
     }
+    
     return ( 
-        <div>
-            <div className="mb-20"> 
-                <ClientProductList products={products}/>
-            </div>
+        
+        <div className="mb-20 flex items-center justify-center container"> 
+            <ClientProductList products={products}/>
         </div>
+       
      );
 }
 export default ClientProductContainer;

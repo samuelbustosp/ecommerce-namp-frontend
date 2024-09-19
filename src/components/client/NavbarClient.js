@@ -1,7 +1,7 @@
-
+import { useState } from "react";
 import { HiMenu } from "react-icons/hi";
 
-const NavbarClient = () => {
+const NavbarClient = ({toggleMenu, isMenuOpen }) => {
     return ( 
         <header className="bg-nav flex items-center justify-between py-4 z-10">
             <span className="cursor-pointer p-2">
@@ -12,7 +12,9 @@ const NavbarClient = () => {
                 <div className='items-center flex gap-3 mr-8'>
                     <p href='/' >Inicio</p>
                     <p href='/username' className="">Contacto</p>
-                    <p href='/username' className="">Productos</p>
+                    <button onClick={toggleMenu}>
+                        Productos
+                    </button>
                 </div>
             </nav>
         </header>

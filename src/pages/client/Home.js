@@ -2,7 +2,7 @@ import ClientProductContainer from "../../components/client/product/ClientProduc
 
 const Home = () => {
     return ( 
-        <div>
+        <div className="bg-gray-100">
             <ClientProductContainer/>
         </div>
     );

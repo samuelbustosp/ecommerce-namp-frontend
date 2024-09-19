@@ -200,6 +200,7 @@ const ProductContainer = () => {
                 isErrorModalOpen={isErrorModalOpen} closeErrorModal={closeErrorModal} 
                 error={error}
             />
+            
         </div>
     );
 }

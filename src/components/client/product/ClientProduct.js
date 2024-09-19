@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom";
-
 const ClientProduct = ({idProduct, name, description, price, stock, img}) => {
     return ( 
-        <article className="flex flex-col bg-white p-4 border border-gray-300 mb-4 w-3/4">
+        <article className="flex flex-col bg-white p-4 border border-gray-300 mb-4 w-full h-80">
             <div className="mb-2">
                 
                 <img src={`http://localhost:8080${img}`} alt={name} className="w-full h-48 object-contain rounded-lg zoomable-image" />
