@@ -55,7 +55,6 @@ const CategoryContainer = () => {
                 const errorText = await response.text();
                 throw new Error(errorText || 'Error al agregar la categoría');
             }
-
             await fetchCategories();
             setIsModalOpen(false);
         } catch (error) {

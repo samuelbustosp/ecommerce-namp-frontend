@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Spinner } from "flowbite-react";
-import ClientProductList from "./ClientProductList"
+import ProductList from "./ProductList"
 
 const ClientProductContainer = () => {
     const [products, setProducts] = useState([]);
@@ -41,7 +41,7 @@ const ClientProductContainer = () => {
     return ( 
         
         <div className="mb-20 flex items-center justify-center container"> 
-            <ClientProductList products={products}/>
+            <ProductList products={products}/>
         </div>
        
      );

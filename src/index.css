@@ -140,3 +140,14 @@ code {
   width: 90%;
   margin: 0 auto;
 }
+
+
+.category-menu-bg{
+  background-color: #0b1c4f;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* Forzar 4 columnas */
+  gap: 1.25rem; /* Ajustar el espacio entre las tarjetas */
+}

@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors: {
         'side': '#171717', 
+        'customColorHover':'#0b1c4f',
       },
     },
   },

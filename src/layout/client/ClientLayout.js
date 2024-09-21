@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import NavbarClient from "../../components/client/NavbarClient"
-import CategoryMenu from "../../components/client/category/CategoryMenu";
+import CategoryMenuContainer from "../../components/client/category/CategoryMenuContainer";
 import { useState } from "react";
 
 
@@ -13,7 +13,7 @@ const ClientLayout = () => {
     return ( 
         <div className="ClientLayout h-screen bg-gray-100">
             <NavbarClient toggleMenu={toggleMenu} isMenuOpen={isMenuOpen}/>
-            <CategoryMenu isMenuOpen={isMenuOpen} />
+            <CategoryMenuContainer isMenuOpen={isMenuOpen} />
             <div className="flex-grow p-4 bg-page overflow-auto">
                 <Outlet />
             </div>
