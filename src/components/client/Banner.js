@@ -5,7 +5,7 @@ const Banner = () => {
   return (
     <div className="">
         <div
-        className="relative h-64 bg-cover bg-center rounded-2xl shadow-lg mb-4 overflow-hidden transition-all duration-300"
+        className="relative h-64 bg-cover bg-center rounded-2xl shadow-lg mb-4 overflow-hidden transition-all duration-300 cursor-pointer"
         style={{
           backgroundImage: `url(${bannerImg})`, backgroundPosition: 'center', backgroundSize: '100%',transition: 'background-size 0.3s ease-in-out'
         }}
