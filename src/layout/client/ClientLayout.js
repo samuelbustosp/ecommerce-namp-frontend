@@ -15,7 +15,7 @@ const ClientLayout = () => {
         <div className="ClientLayout h-screen bg-gray-100">
             <NavbarClient toggleMenu={toggleMenu} isMenuOpen={isMenuOpen}/>
             <CategoryMenuContainer isMenuOpen={isMenuOpen} />
-            <div className="flex-grow p-4 bg-page overflow-auto">
+            <div className="flex-grow bg-page overflow-auto">
                 <Outlet />
             </div>
         </div>

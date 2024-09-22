@@ -9,9 +9,11 @@ const SubcategoryDetail = ({ subcategories , category}) => {
         { name: "Inicio", to:'/home' },
         { name: category.name.charAt(0).toUpperCase() + category.name.slice(1).toLowerCase() }, `/category/${category.name.toLowerCase()}`
     ];
+
+    console.log(subcategories);
     return (
-        <div className="flex h-screen gap-10 mt-4">
-            <div className="w-1/6">
+        <div className="flex min-h-screen gap-2 mt-4">
+            <div className="w-1/6 pl-8">
                 <div className="w-full mb-4 ml-2"> 
                     <Breadcrumb paths={paths} />
                 </div>
@@ -19,7 +21,7 @@ const SubcategoryDetail = ({ subcategories , category}) => {
                     <h1 className="font-semibold poppins-bold text-2xl ">{category.name}</h1>
                     <p className="poppins-light text-sm">{totalProducts} resultados</p>
                 </div>  
-                <ol className="bg-white py-4 rounded-lg border shadow-lg ">
+                <ol className="bg-white py-4 px-2 rounded-xl border shadow-lg ">
                     <h2 className="poppins-semibold text-blue-950 text-lg ml-2">Categorías</h2>
                     {subcategories.map((subcategory) => (
                         <li key={subcategory.idSubcategory} className="leading-5 ml-2 flex items-center poppins-regular">
@@ -30,7 +32,8 @@ const SubcategoryDetail = ({ subcategories , category}) => {
                     ))}
                 </ol>
             </div>
-            <div className="w-4/5 ml-4 mb-8 items-center justify-center container">
+            
+            <div className="w-4/5 items-center justify-center container">
                 <ProductList products={allProducts} />
             </div>
         </div>

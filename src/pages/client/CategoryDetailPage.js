@@ -2,7 +2,7 @@ import CategoryDetailContainer from "../../components/client/category/CategoryDe
 
 const CategoryDetailPage = () => {
     return ( 
-        <div>
+        <div className="bg-gray-100 min-h-screen">
             <CategoryDetailContainer/>
         </div>
      );

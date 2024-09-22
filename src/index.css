@@ -147,11 +147,10 @@ code {
 }
 
 .container{
-  max-width: 120rem;
+  max-width: 1280px;
   width: 90%;
   margin: 0 auto;
 }
-
 
 .category-menu-bg{
   background-color: #0b1c4f;

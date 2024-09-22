@@ -12,17 +12,17 @@ const CategoryListPage = () => {
     };
 
     return (
-        <div className="">
+        <div className="bg-gray-100 min-h-screen">
             <div className="bg-white rounded-t-xl border shadow-lg flex items-center justify-center p-4 gap-2">
                 <h1 className="poppins-bold text-color-nav text-3xl">Categorías</h1>
                 <button onClick={toggleMenu} className="text-blue-900 text-xl">
                     {isMenuOpen==true ? (<FaMinus/>):( <FaPlus/>) }
                 </button>
             </div>
-            
             <CategoryMenuContainer isMenuOpen={isMenuOpen} /> 
-            <ProductContainer/>
-            
+            <div className="container">
+                <ProductContainer/>
+            </div>
         </div>
     );
 };

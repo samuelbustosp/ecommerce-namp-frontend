@@ -55,7 +55,7 @@ const CategoryDetailContainer = () => {
     }
     
     return (  
-        <div>
+        <div className="">
             <SubcategoryDetail subcategories={subcategories} category={category}/>
         </div>
     );
