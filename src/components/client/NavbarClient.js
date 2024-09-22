@@ -1,9 +1,19 @@
-import { FaSearch, FaShoppingCart,FaUser  } from "react-icons/fa";
+import { FaSearch, FaShoppingCart, FaUser, FaChevronDown, FaChevronUp } from "react-icons/fa"; // Importa los íconos de flechas
+
 import logo from "../../components/client/assets/logo-namp-bl.png"
 import { Link } from "react-router-dom";
 import { MdLocalShipping } from "react-icons/md";
+import { useState } from "react";
 
-const NavbarClient = ({toggleMenu }) => {
+
+const NavbarClient = ({toggleMenu}) => {
+    const [isOpen, setIsOpen] = useState(false); // Estado para controlar la apertura del menú
+
+    const handleToggle = () => {
+        setIsOpen(!isOpen);
+        toggleMenu(); // Llama a la función toggleMenu si la necesitas
+    };
+    
     return ( 
         <header className=" flex flex-col">
             <div className="bg-banner-not text-white poppins-light text-center text-sm p-1">
@@ -46,11 +56,12 @@ const NavbarClient = ({toggleMenu }) => {
                 </div>
             </div>
             <div className=" bg-sub-nav text-white text-md p-2 ">
-                    <div className='items-center poppins-regular flex gap-3 ml-8 justify-start'>
-                        <button onClick={toggleMenu} className="hover:text-blue-700">
-                            Categorías
+                    <div className='items-center poppins-semibold flex gap-4 justify-center'>
+                        <button onClick={handleToggle} className="hover:text-blue-700 flex items-center">
+                            Categorías{isOpen ? <FaChevronUp className="ml-1" /> : <FaChevronDown className="ml-1" />}
                         </button>
                         <Link to='/combo' className="hover:text-blue-700 cursor-pointer">Combos</Link>
+                        <Link to='/contacto' className="hover:text-blue-700 cursor-pointer">Contacto</Link>
                     </div>
             </div>
                 

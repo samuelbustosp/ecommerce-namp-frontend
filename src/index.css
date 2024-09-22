@@ -161,3 +161,7 @@ code {
   grid-template-columns: repeat(4, minmax(0, 1fr)); /* Forzar 4 columnas */
   gap: 1.25rem; /* Ajustar el espacio entre las tarjetas */
 }
+
+.h-banner{
+  height: 26rem;
+}
