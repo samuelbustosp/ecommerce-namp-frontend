@@ -12,14 +12,9 @@ const AdminLayout = () => {
 
     return (
       <div className="AdminLayout flex h-screen bg-gray-100">
-        {/* Sidebar */}
         <SidebarComponent isOpen={sidebarOpen} />
-        
-        {/* Main Content Area */}
         <div className={`flex flex-col w-full transition-all duration-300 ${sidebarOpen ? 'ml-0' : 'ml-0'}`}>
           <NavbarComponent toggleSidebar={toggleSidebar} />
-          
-          {/* Outlet where other pages are rendered */}
           <div className="flex-grow p-4 bg-page overflow-auto">
             <Outlet />
           </div>

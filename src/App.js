@@ -8,7 +8,6 @@ import SubcategoryPage from './pages/SubcategoryPage';
 import CategoryForm from './components/admin/category/AddCategoryModal';
 import ClientLayout from './layout/client/ClientLayout';
 import Home from './pages/client/Home';
-import CategoryDetailContainer from './components/client/category/CategoryDetailContainer';
 import CategoryDetailPage from './pages/client/CategoryDetailPage';
 
 

@@ -5,8 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import SubcategoryList from "./SubcategoryList";
 import AddSubcategoryModal from "./AddSubcategoryModal";
 import { Spinner } from "flowbite-react";
-import CategoryContainer from "../category/CategoryContainer";
-import CategoryList from "../category/CategoryList";
+
 
 const SubcategoryContainer = () => {
     const [subcategories, setSubcategories] = useState([]);
@@ -27,7 +26,7 @@ const SubcategoryContainer = () => {
                     throw new Error('Error al obtener las categorías');
                 }
                 const data = await response.json();
-                setCategories(data); // Asignar los datos al estado
+                setCategories(data); 
             } catch (error) {
                 setError(error.message);
                 setIsErrorModalOpen(true);
@@ -46,8 +45,8 @@ const SubcategoryContainer = () => {
                 throw new Error('Error al obtener las subcategorías');
             }
             const data = await response.json();
-             // Verifica la estructura de los datos
-            setSubcategories(data); // Asignar los datos al estado
+             
+            setSubcategories(data); 
         } catch (error) {
             setError(error.message);
             setIsErrorModalOpen(true);
@@ -162,7 +161,7 @@ const SubcategoryContainer = () => {
                         placeholder="Buscar por nombre..."
                         className="p-2 ml-4 border border-gray-300 rounded"
                         value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}  // Actualizar el término de búsqueda
+                        onChange={(e) => setSearchTerm(e.target.value)} 
                     />
                     <FaSearch className="text-lg text-zinc-700 ml-1.5"/>
                 </div>

@@ -8,15 +8,11 @@ const AddSubcategoryModal = ({ isOpen, onClose, onAddSubcategory, onUpdateSubcat
 
     useEffect(() => {
         if (subcategoryToEdit) {
-
-            console.log("subcategoria para editar", subcategoryToEdit);
-
             setSubcategory({
                 name: subcategoryToEdit.name,
                 description: subcategoryToEdit.description,
                 idCategory: subcategoryToEdit.idCategory.idCategory
             });
-
             setSelectedCategory(categories.find(c => c.idCategory === subcategoryToEdit.idCategory.idCategory));
         } else {
             setSubcategory({ name: '', description: '', idCategory: null });
@@ -29,7 +25,7 @@ const AddSubcategoryModal = ({ isOpen, onClose, onAddSubcategory, onUpdateSubcat
             .filter(option => 
                 option.name.toLowerCase().includes(query.toLowerCase())
             )
-            .sort((a, b) => a.name.localeCompare(b.name)), // Ordena de forma ascendente
+            .sort((a, b) => a.name.localeCompare(b.name)),
         [query, categories]
     );
     
@@ -48,11 +44,10 @@ const AddSubcategoryModal = ({ isOpen, onClose, onAddSubcategory, onUpdateSubcat
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Crear el objeto SubcategoryToSend
             const subcategoryToSend = {
                 name: subcategory.name,
                 description: subcategory.description,
-                idCategory: selectedCategory // Enviar el objeto completo
+                idCategory: selectedCategory
             };
             if (subcategoryToEdit) {
                 await onUpdateSubcategory(subcategoryToEdit.idSubcategory, subcategoryToSend);

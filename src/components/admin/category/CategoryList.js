@@ -37,7 +37,7 @@ const CategoryList = ({categories, deleteCategory, onEditCategory}) => {
             confirmButtonText: 'Sí, eliminar'
         }).then((result) => {
             if (result.isConfirmed) {
-                deleteCategory(idCategory);  // Llama a la función de eliminación si se confirma
+                deleteCategory(idCategory); 
                 Swal.fire({
                     title: 'Eliminado!',
                     text: 'La categoría ha sido eliminada.',
@@ -84,7 +84,7 @@ const CategoryList = ({categories, deleteCategory, onEditCategory}) => {
                     {sortedCategories.map((category, index) => (
                         <tr 
                             key={category.idCategory} 
-                            className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}  // Alterna entre gris claro y blanco
+                            className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}  
                         >
                             <td className="px-4 py-2 border-b border-b-gray-300">{category.idCategory}</td>
                             <td className="px-4 py-2 border-b border-b-gray-300">{category.name}</td>

@@ -16,9 +16,6 @@ const ProductModal = ({ isOpen, onClose, onAddProduct, onUpdateProduct, productT
                 price: productToEdit.price,
                 idSubcategory: productToEdit.idSubcategory.idSubcategory
             });
-
-            //setFile(null); // Restablece el file cuando se carga un producto para editar
-
         } else {
             setProduct({ name: '', description: '', img:'', stock: '', price: '', idSubcategory: null });
             setFile(null);
@@ -37,7 +34,7 @@ const ProductModal = ({ isOpen, onClose, onAddProduct, onUpdateProduct, productT
             .filter(option => 
                 option.name.toLowerCase().includes(query.toLowerCase())
             )
-            .sort((a, b) => a.name.localeCompare(b.name)), // Ordena de forma ascendente
+            .sort((a, b) => a.name.localeCompare(b.name)), 
         [query, subcategories]
     );
 
@@ -50,7 +47,6 @@ const ProductModal = ({ isOpen, onClose, onAddProduct, onUpdateProduct, productT
     };
     
     const handleSubcategoryChange = (e) => {
-        console.log("Subcategory changed:", e.target.value);
         setProduct(prevProduct => ({
             ...prevProduct,
             idSubcategory: e.target.value
@@ -59,7 +55,6 @@ const ProductModal = ({ isOpen, onClose, onAddProduct, onUpdateProduct, productT
     
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
-        console.log("File selected:", selectedFile); // Verifica el archivo seleccionado
         setFile(selectedFile);
     };
     
@@ -156,7 +151,6 @@ const ProductModal = ({ isOpen, onClose, onAddProduct, onUpdateProduct, productT
                     </div>
                     <div className="mb-4">
                         <label htmlFor="file" className="block text-sm font-medium text-gray-700">Imagen</label>
-                        {/* Si hay una imagen, se muestra una vista previa */}
                         {(file || product.img) && (
                             <div className="mb-4">
                                 <img 

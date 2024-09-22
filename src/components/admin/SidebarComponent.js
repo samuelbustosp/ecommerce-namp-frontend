@@ -1,4 +1,4 @@
-import { Sidebar, SidebarItemGroup } from "flowbite-react";
+import { Sidebar } from "flowbite-react";
 import { MdFilterList } from "react-icons/md";
 import { CgLogOut } from "react-icons/cg";
 import { IoMdHelpCircle } from "react-icons/io";

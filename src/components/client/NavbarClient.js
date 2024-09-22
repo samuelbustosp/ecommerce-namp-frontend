@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import logo from "../../components/client/assets/logo-namp-bl.png"
 import { Link } from "react-router-dom";

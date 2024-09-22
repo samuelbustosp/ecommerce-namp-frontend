@@ -31,7 +31,7 @@ const CategoryMenu = ({isMenuOpen}) => {
 
     const sortedCategories = useMemo(() => 
         categories
-            .sort((a, b) => a.name.localeCompare(b.name)) // Ordena de forma ascendente
+            .sort((a, b) => a.name.localeCompare(b.name)) 
     , [categories]);
 
     if (!isMenuOpen) return null;

@@ -40,7 +40,7 @@ const ProductContainer = () => {
         try {
             const response = await fetch("http://localhost:8080/api-namp/product", {
                 method: 'GET',
-                mode: 'cors' // Asegúrate de que CORS esté habilitado
+                mode: 'cors' 
             });
 
             if (!response.ok) {
@@ -168,7 +168,7 @@ const ProductContainer = () => {
                         placeholder="Buscar por nombre..."
                         className="p-2 ml-4 border border-gray-300 rounded"
                         value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}  // Actualizar el término de búsqueda
+                        onChange={(e) => setSearchTerm(e.target.value)} 
                     />
                     <FaSearch className="text-lg text-zinc-700 ml-1.5"/>
                 </div>

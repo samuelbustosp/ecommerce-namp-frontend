@@ -8,7 +8,6 @@ const NavbarComponent = ({toggleSidebar}) => {
         toggleSidebar();
     };
     
-    
     return ( 
         <header className="bg-nav flex items-center justify-between py-4 z-10">
             <span onClick={handleClick} className="cursor-pointer p-2">

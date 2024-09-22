@@ -10,6 +10,7 @@ const ClientLayout = () => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+    
     return ( 
         <div className="ClientLayout h-screen bg-gray-100">
             <NavbarClient toggleMenu={toggleMenu} isMenuOpen={isMenuOpen}/>

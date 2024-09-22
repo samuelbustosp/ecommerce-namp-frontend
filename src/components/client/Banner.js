@@ -1,5 +1,5 @@
 import React from "react";
-import bannerImg from "./assets/banner-wine.jpg"; // Asegúrate de tener una imagen adecuada
+import bannerImg from "./assets/banner-wine.jpg"; 
 
 const Banner = () => {
   return (

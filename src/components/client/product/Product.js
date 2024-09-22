@@ -1,7 +1,7 @@
 import { FaShoppingBasket } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
 
-const ClientProduct = ({ idProduct, name, description, price, stock, img, idSubcategory }) => {
+const ClientProduct = ({name, price, stock, img, idSubcategory}) => {
     return (
         <article className="flex flex-col shadow-lg bg-white p-2 mb-2 border border-gray-300 w-full h-76 rounded-lg">
             <div className="">
@@ -15,7 +15,7 @@ const ClientProduct = ({ idProduct, name, description, price, stock, img, idSubc
                 <header className="p-2">
                     <h2 className="text-md poppins-semibold">{name}</h2>
                     <span className="font-light text-sm">{idSubcategory.idCategory.name}</span>
-                    <div className="min-h-[2px] "> {/* Espacio reducido para el envío gratis */}
+                    <div className="min-h-[2px] ">
                         {price > 30000 ? <p className="text-sm text-green-800 flex items-center font-semibold gap-1"><MdLocalShipping/>Envío gratis</p> : <p>&nbsp;</p>}
                     </div>
                 </header>
