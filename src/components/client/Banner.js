@@ -5,10 +5,10 @@ const Banner = () => {
   return (
     <div className="px-4">
         <div
-        className="relative h-64 bg-cover bg-center rounded-2xl shadow-lg mb-4"
+        className="relative h-64 bg-cover bg-center rounded-2xl shadow-lg mb-4 overflow-hidden transition-transform duration-300 transform hover:scale-95"
         style={{ backgroundImage: `url(${bannerImg})`, backgroundPosition: 'center' }}
         >
-            <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center rounded-2xl p-4">
+            <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center rounded-2xl p-4 hover:bg-opacity-20">
                 <div>
                     <h2 className="text-white text-3xl md:text-5xl poppins-bold">Nuestra Colección</h2>
                     <p className="text-white text-lg poppins-light">Vino Malbec de alta calidad.</p>

@@ -9,7 +9,8 @@ import CategoryForm from './components/admin/category/AddCategoryModal';
 import ClientLayout from './layout/client/ClientLayout';
 import Home from './pages/client/Home';
 import CategoryDetailPage from './pages/client/CategoryDetailPage';
-
+import CategoryMenuContainer from './components/client/category/CategoryMenuContainer'
+import CategoryListPage from './pages/client/CategoryListPage';
 
 function App() {
   
@@ -25,10 +26,9 @@ function App() {
             <Route path="subcategories" element={<SubcategoryPage/>}/>
             <Route path="add-category" element={<CategoryForm/>}/>
           </Route>
-
           <Route path="/" element={<ClientLayout></ClientLayout>}>
             <Route path="home" element={<Home/>}/>
-            <Route path="categoria/" element={<CategoryDetailPage/>}/>
+            <Route path="categoria" element={<CategoryListPage/>}/>
             <Route path="categoria/:name" element={<CategoryDetailPage/>}/>
           </Route>
 

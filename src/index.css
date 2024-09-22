@@ -129,6 +129,17 @@ code {
 .bg-nav{
   background-color: #212121;
 }
+.bg-sub-nav{
+  background-color: #272727;
+}
+
+.bg-banner-not{
+  background-color: #102975;
+}
+
+.text-color-nav {
+  color:  rgba(33, 33, 33, 1);
+}
 
 .bg-side{
   background-color: #171717;
