@@ -1,5 +1,4 @@
-import { FaSearch, FaShoppingCart, FaUser, FaChevronDown, FaChevronUp } from "react-icons/fa"; // Importa los íconos de flechas
-
+import { FaSearch, FaShoppingCart, FaUser, FaChevronDown, FaChevronUp } from "react-icons/fa"; 
 import logo from "../../components/client/assets/logo-namp-bl.png"
 import { Link } from "react-router-dom";
 import { MdLocalShipping } from "react-icons/md";
@@ -7,11 +6,11 @@ import { useState } from "react";
 
 
 const NavbarClient = ({toggleMenu}) => {
-    const [isOpen, setIsOpen] = useState(false); // Estado para controlar la apertura del menú
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
-        toggleMenu(); // Llama a la función toggleMenu si la necesitas
+        toggleMenu(); 
     };
     
     return ( 

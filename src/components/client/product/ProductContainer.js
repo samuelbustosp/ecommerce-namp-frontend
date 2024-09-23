@@ -29,6 +29,8 @@ const ClientProductContainer = () => {
         fetchProducts();
     }, []);
 
+    console.log(products);
+
 
     if (loading) {
         return (

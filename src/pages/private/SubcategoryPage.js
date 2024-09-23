@@ -1,5 +1,5 @@
 import { MdOutlineSubject } from "react-icons/md";
-import SubcategoryContainer from "../components/admin/subcategory/SubCategoryContainer";
+import SubcategoryContainer from "../../components/admin/subcategory/SubCategoryContainer";
 
 
 const SubcategoryPage = () => {

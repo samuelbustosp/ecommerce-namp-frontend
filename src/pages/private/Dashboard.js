@@ -1,5 +1,5 @@
 import { HiComputerDesktop } from "react-icons/hi2";
-import CategoryContainer from "../components/admin/category/CategoryContainer";
+import CategoryContainer from "../../components/admin/category/CategoryContainer";
 
 const Dashboard = () => {
     return (  

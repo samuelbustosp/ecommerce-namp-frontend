@@ -4,10 +4,10 @@ import SidebarComponent from "../../components/admin/SidebarComponent";
 import { Outlet } from "react-router-dom";
 
 const AdminLayout = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(true);
 
     const toggleSidebar = () => {
-        setSidebarOpen(!sidebarOpen);
+      setSidebarOpen(!sidebarOpen);
     };
 
     return (

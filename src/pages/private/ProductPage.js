@@ -1,5 +1,5 @@
 import { RiShoppingBag4Fill } from "react-icons/ri";
-import ProductContainer from "../components/admin/product/ProductContainer";
+import ProductContainer from "../../components/admin/product/ProductContainer";
 
 
 const ProductPage = () => {
