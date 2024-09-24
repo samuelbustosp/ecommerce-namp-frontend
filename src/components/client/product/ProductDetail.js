@@ -13,9 +13,9 @@ const ProductDetail = ({idProduct,name,description,stock,img,price,idSubcategory
                 </div>
                 <div className="border rounded-2xl w-96 text-left py-4">
                     <h1 className="poppins-bold text-2xl ml-4">{name}</h1>
-                    <p className="poppins-light text-lg ml-4 mb-2">{description}</p>
-                    <p className="poppins-light text-lg ml-4 mb-16">
-                        <Link to={`/subcategoria/${idSubcategory.name.toLowerCase()}`}>{idSubcategory.name}</Link></p>
+                    <p className="poppins-light text-lg ml-4 mb-2">
+                    <Link to={`/subcategoria/${idSubcategory.name.toLowerCase()}`}>{idSubcategory.name}</Link></p>
+                    <p className="poppins-light text-md ml-4 mb-16">{description}</p>
                     <h1 className="poppins-regular text-4xl ml-4 mb-16">${price}
                         <span className="ml-1 text-xl">ARS</span>
                     </h1>
