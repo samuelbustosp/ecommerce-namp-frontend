@@ -24,7 +24,7 @@ const useFetchCategory = () => {
         fetchCategories();
     }, []);
 
-    return { categories, error, loading }; // Devuelve los valores
+    return { categories, error, loading }; 
 };
 
 export default useFetchCategory;

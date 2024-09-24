@@ -1,37 +1,11 @@
 import { useEffect, useState } from "react";
 import { Spinner } from "flowbite-react";
 import ProductList from "./ProductList"
+import useFetchProduct from "../../../hooks/product/useFetchProduct";
 
 const ClientProductContainer = () => {
-    const [products, setProducts] = useState([]);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchProducts = async () => {
-            setLoading(true);
-            try {
-                const response = await fetch("http://localhost:8080/api-namp/product");
-                if (!response.ok) {
-                    throw new Error('Error al traer los productos');
-                }
-                const data = await response.json();
-                setProducts(data);
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setTimeout(()=>{
-                    setLoading(false);
-                },800)
-                
-            }
-        };
-        fetchProducts();
-    }, []);
-
-    console.log(products);
-
-
+    const { products, error, loading } = useFetchProduct();
+    
     if (loading) {
         return (
             <div className="bottom-1/2 flex justify-center items-center h-80">

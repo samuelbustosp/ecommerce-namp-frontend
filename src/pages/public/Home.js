@@ -3,7 +3,7 @@ import Banner from "../../components/client/Banner";
 import ProductContainer from "../../components/client/product/ProductContainer";
 import PromotionalCards from "../../components/client/PromotionalCards";
 import bannerImg from "../../components/client/assets/banner-wine-prod.jpg";
-import CategoryCarousel from "../../components/client/CategoryCarrousel";
+import CategoryCarousel from "../../components/client/category/CategoryCarrousel";
 
 const Home = () => {
 
@@ -23,12 +23,9 @@ const Home = () => {
                         backgroundImage: `url(${bannerImg})`,
                         backgroundPosition: "center",
                         backgroundSize: "cover",
-                        
                     }}
                 >
-                    
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-100 opacity-100"></div>
-                    
                     <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center p-4">
                         <div className="pl-10">
                             <h2 className="text-white text-3xl md:text-5xl poppins-bold">Nuestros Productos</h2>

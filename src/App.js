@@ -10,6 +10,7 @@ import ClientLayout from './layout/client/ClientLayout';
 import Home from './pages/public/Home';
 import CategoryDetailPage from './pages/public/CategoryDetailPage';
 import CategoryListPage from './pages/public/CategoryListPage';
+import ProductDetailPage from './pages/public/ProductDetailPage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="home" element={<Home/>}/>
             <Route path="categoria" element={<CategoryListPage/>}/>
             <Route path="categoria/:name" element={<CategoryDetailPage/>}/>
+            <Route path="producto/:name" element={<ProductDetailPage/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

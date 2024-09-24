@@ -1,9 +1,9 @@
-import useFetchCategory from "../../hooks/useFetchCategory";
 import { Spinner, Button } from "flowbite-react";
 import { useState } from "react";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { PiWineFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import useFetchCategory from "../../../hooks/category/useFetchCategory";
 
 const CategoryCarousel = () => {
     const { categories, error, loading } = useFetchCategory();

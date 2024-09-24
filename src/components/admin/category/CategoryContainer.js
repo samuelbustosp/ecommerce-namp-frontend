@@ -18,7 +18,6 @@ const CategoryContainer = () => {
 
 
     useEffect(() => {
-
         fetchCategories();
     }, []);
 
@@ -33,7 +32,7 @@ const CategoryContainer = () => {
             setCategories(data);
         } catch (error) {
             setError(error.message);
-            setIsErrorModalOpen(true); // Mostrar modal de error
+            setIsErrorModalOpen(true);
         } finally {
             setTimeout(()=>{
                 setLoading(false);
