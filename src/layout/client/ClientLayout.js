@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import NavbarClient from "../../components/client/NavbarClient"
 import CategoryMenuContainer from "../../components/client/category/CategoryMenuContainer";
 import { useState } from "react";
+import { FooterClient } from "../../components/client/FooterClient";
 
 
 const ClientLayout = () => {
@@ -15,9 +16,13 @@ const ClientLayout = () => {
         <div className="ClientLayout h-screen bg-gray-100">
             <NavbarClient toggleMenu={toggleMenu} isMenuOpen={isMenuOpen}/>
             <CategoryMenuContainer isMenuOpen={isMenuOpen} />
-            <div className="flex-grow bg-page overflow-auto">
+            <div className="flex-grow bg-gray-100 overflow-auto">
                 <Outlet />
             </div>
+            <div className="py-2 px-4 bg-gray-100 ">
+                <FooterClient/>
+            </div>
+            
         </div>
     );
 

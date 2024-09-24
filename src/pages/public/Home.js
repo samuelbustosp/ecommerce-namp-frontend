@@ -36,7 +36,7 @@ const Home = () => {
                 </div>
             </div>
             <div
-                className="relative transition-opacity duration-700"
+                className="relative transition-opacity duration-700 mb-20"
                 style={{
                     marginTop: "-150px", 
                     zIndex: 10,

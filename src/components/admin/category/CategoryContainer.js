@@ -133,7 +133,6 @@ const CategoryContainer = () => {
         )
     }
 
-
     return (
         <div className="mb-4">
             <div className="flex justify-between mr-4 mt-4 gap-2">

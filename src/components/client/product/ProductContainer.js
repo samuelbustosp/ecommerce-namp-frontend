@@ -16,7 +16,7 @@ const ClientProductContainer = () => {
     
     return ( 
         
-        <div className="flex items-center justify-center container"> 
+        <div className="flex items-center justify-center container gray-100"> 
             <ProductList products={products}/>
         </div>
        

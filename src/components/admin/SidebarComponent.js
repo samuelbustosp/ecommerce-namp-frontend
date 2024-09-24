@@ -1,9 +1,10 @@
 import { Sidebar } from "flowbite-react";
 import { MdFilterList } from "react-icons/md";
 import { CgLogOut } from "react-icons/cg";
-import { IoMdHelpCircle } from "react-icons/io";
+import { IoMdHelpCircle, IoMdPricetag  } from "react-icons/io";
 import { BiSolidCategory } from "react-icons/bi";
 import { HiChartPie,HiShoppingBag} from "react-icons/hi";
+import { FaTags } from "react-icons/fa";
 import logoNav from "./assets/logo-nav1.png"
 
 
@@ -34,6 +35,9 @@ const SidebarComponent = ({isOpen}) => {
                         </Sidebar.Item>
                         <Sidebar.Item href="/subcategories" icon={() => <MdFilterList className="text-white w-6 h-5" />} className="text-white hover:bg-black hover:bg-opacity-50">
                             Subcategorias
+                        </Sidebar.Item>
+                        <Sidebar.Item href="/combos" icon={() => <IoMdPricetag className="text-white w-6 h-5" />} className="text-white hover:bg-black hover:bg-opacity-50">
+                            Combos
                         </Sidebar.Item>
                         </Sidebar.ItemGroup>
                         <Sidebar.ItemGroup>

@@ -15,7 +15,7 @@ const AdminLayout = () => {
         <SidebarComponent isOpen={sidebarOpen} />
         <div className={`flex flex-col w-full transition-all duration-300 ${sidebarOpen ? 'ml-0' : 'ml-0'}`}>
           <NavbarComponent toggleSidebar={toggleSidebar} />
-          <div className="flex-grow p-4 bg-page overflow-auto">
+          <div className="flex-grow p-4 bg-gray overflow-auto">
             <Outlet />
           </div>
         </div>
