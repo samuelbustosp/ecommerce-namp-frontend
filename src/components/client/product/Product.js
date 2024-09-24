@@ -1,5 +1,6 @@
 import { FaShoppingBasket } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const ClientProduct = ({name, price, stock, img, idSubcategory}) => {
     return (
@@ -16,7 +17,14 @@ const ClientProduct = ({name, price, stock, img, idSubcategory}) => {
                     <h2 className="text-md poppins-semibold">{name}</h2>
                     <span className="font-light text-sm">{idSubcategory.idCategory.name}</span>
                     <div className="min-h-[2px] ">
-                        {price > 30000 ? <p className="text-sm text-green-800 flex items-center font-semibold gap-1"><MdLocalShipping/>Envío gratis</p> : <p>&nbsp;</p>}
+                        {price > 30000 ? ( 
+                            <p className="text-sm text-green-800 flex items-center font-semibold gap-1">
+                                <MdLocalShipping/>
+                                Envío gratis
+                            </p>
+                        ):( 
+                            <p>&nbsp;</p>
+                        )}
                     </div>
                 </header>
                 <section className=" p-2">
@@ -27,7 +35,7 @@ const ClientProduct = ({name, price, stock, img, idSubcategory}) => {
                                 href="#"
                                 className="text-white bg-customColorHover hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-3 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             >
-                                <FaShoppingBasket />
+                                <Link to={`/producto/${name.toLowerCase()}`}><FaShoppingBasket /></Link>
                             </a>
                         ) : (
                             <a className="text-gray-500 border border-gray-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center cursor-not-allowed">
