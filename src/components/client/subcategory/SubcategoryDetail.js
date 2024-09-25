@@ -1,5 +1,6 @@
 import ProductList from "../product/ProductList";
 import Breadcrumb from "../Breadcrumb"
+import { Link } from "react-router-dom";
 
 const SubcategoryDetail = ({ subcategories , category}) => {
     const allProducts = subcategories.flatMap(subcategory => subcategory.products);
@@ -10,7 +11,6 @@ const SubcategoryDetail = ({ subcategories , category}) => {
         { name: category.name.charAt(0).toUpperCase() + category.name.slice(1).toLowerCase() }, `/category/${category.name.toLowerCase()}`
     ];
 
-    console.log(subcategories);
     return (
         <div className="flex min-h-screen gap-2 mt-4">
             <div className="w-1/6 pl-8">
@@ -25,9 +25,11 @@ const SubcategoryDetail = ({ subcategories , category}) => {
                     <h2 className="poppins-semibold text-blue-950 text-lg ml-2">Categorías</h2>
                     {subcategories.map((subcategory) => (
                         <li key={subcategory.idSubcategory} className="leading-5 ml-2 flex items-center poppins-regular">
-                            {subcategory.name.charAt(0).toUpperCase() 
-                            + subcategory.name.slice(1).toLowerCase()} 
-                            <p className="poppins-light text-gray-900 text-sm">({subcategory.products.length})</p>    
+                            <Link to={`subcategoria/${subcategory.name.toLowerCase()}`} className="flex items-center">
+                                {subcategory.name.charAt(0).toUpperCase() 
+                                + subcategory.name.slice(1).toLowerCase()} 
+                                <p className="poppins-light text-gray-900 text-sm">({subcategory.products.length})</p>    
+                            </Link>
                         </li>
                     ))}
                 </ol>
@@ -37,8 +39,7 @@ const SubcategoryDetail = ({ subcategories , category}) => {
                 <ProductList products={allProducts} />
             </div>
         </div>
-    );
-    
+    );  
 };
 
 export default SubcategoryDetail;

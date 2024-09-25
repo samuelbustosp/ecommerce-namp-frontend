@@ -22,7 +22,7 @@ const ProductDetailContainer = () => {
     }
 
     return (
-        <div>
+        <div className="">
             <ProductDetailList product={product} />
         </div>
     );

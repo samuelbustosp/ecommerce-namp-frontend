@@ -11,6 +11,7 @@ import Home from './pages/public/Home';
 import CategoryDetailPage from './pages/public/CategoryDetailPage';
 import CategoryListPage from './pages/public/CategoryListPage';
 import ProductDetailPage from './pages/public/ProductDetailPage';
+import SubcategoryDetailPage from './pages/public/SubcategoryDetailPage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="categoria" element={<CategoryListPage/>}/>
             <Route path="categoria/:name" element={<CategoryDetailPage/>}/>
             <Route path="producto/:name" element={<ProductDetailPage/>}/>
+            <Route path="categoria/:name/subcategoria/:name" element={<SubcategoryDetailPage/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

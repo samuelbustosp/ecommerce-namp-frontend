@@ -2,7 +2,7 @@ import ProductDetailContainer from "../../components/client/product/ProductDetai
 
 const ProductDetailPage = () => {
     return ( 
-        <div className="mt-12 bg-gray-100 min-h-screen">
+        <div className="mt-28 bg-gray-100 min-h-screen">
             <ProductDetailContainer/>
         </div>
      );
