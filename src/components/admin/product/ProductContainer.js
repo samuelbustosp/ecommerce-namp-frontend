@@ -74,7 +74,16 @@ const ProductContainer = () => {
 
             if (!response.ok) {
                 const errorText = await response.text();
-                throw new Error(errorText || 'Error al agregar la subcategoría');
+
+                // Verificamos si el mensaje contiene el formato de 'messageTemplate'
+                let errorMessage;
+                if (errorText.includes("messageTemplate=")) {
+                    errorMessage = extractMessageTemplate(errorText);
+                } else {
+                    errorMessage = errorText; // Es un mensaje de error simple
+                }
+
+                throw new Error(errorMessage || 'Error al agregar el producto');
             }
             
             await fetchProduct();
@@ -104,7 +113,16 @@ const ProductContainer = () => {
 
             if (!response.ok) {
                 const errorText = await response.text();
-                throw new Error(errorText || 'Error al actualizar la subcategoría');
+
+                // Verificamos si el mensaje contiene el formato de 'messageTemplate'
+                let errorMessage;
+                if (errorText.includes("messageTemplate=")) {
+                    errorMessage = extractMessageTemplate(errorText);
+                } else {
+                    errorMessage = errorText; // Es un mensaje de error simple
+                }
+                
+                throw new Error(errorMessage || 'Error al actualizar el producto');
             }
 
             await fetchProduct();
@@ -125,7 +143,7 @@ const ProductContainer = () => {
                 method: "DELETE"
             });
             if (!response.ok) {
-                throw new Error('Error al eliminar la subcategoría');
+                throw new Error('Error al eliminar el producto');
             }
             await fetchProduct();
         } catch (error) {
@@ -135,6 +153,15 @@ const ProductContainer = () => {
             setLoading(false);
         }
     };
+
+    // Función para extraer el `messageTemplate` del texto de error
+    const extractMessageTemplate = (errorText) => {
+        // Expresión regular para extraer el contenido del `messageTemplate`
+        const regex = /messageTemplate='([^']+)'/;
+        const match = errorText.match(regex);
+        return match ? match[1] : null;
+    };
+    
 
 
     const handleAddProductClick = () => {

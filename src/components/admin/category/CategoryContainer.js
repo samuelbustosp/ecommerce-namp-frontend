@@ -52,7 +52,16 @@ const CategoryContainer = () => {
             });
             if (!response.ok) {
                 const errorText = await response.text();
-                throw new Error(errorText || 'Error al agregar la categoría');
+
+                // Verificamos si el mensaje contiene el formato de 'messageTemplate'
+                let errorMessage;
+                if (errorText.includes("messageTemplate=")) {
+                    errorMessage = extractMessageTemplate(errorText);
+                } else {
+                    errorMessage = errorText; // Es un mensaje de error simple
+                }
+
+                throw new Error(errorMessage || 'Error al agregar la categoría');
             }
             await fetchCategories();
             setIsModalOpen(false);
@@ -76,7 +85,16 @@ const CategoryContainer = () => {
             });
             if (!response.ok) {
                 const errorText = await response.text();
-                throw new Error(errorText || 'Error al actualizar la categoría');
+
+                // Verificamos si el mensaje contiene el formato de 'messageTemplate'
+                let errorMessage;
+                if (errorText.includes("messageTemplate=")) {
+                    errorMessage = extractMessageTemplate(errorText);
+                } else {
+                    errorMessage = errorText; // Es un mensaje de error simple
+                }
+
+                throw new Error(errorMessage || 'Error al actualizar la categoría');
             }
             await fetchCategories();
             setIsModalOpen(false); 
@@ -104,6 +122,14 @@ const CategoryContainer = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    // Función para extraer el `messageTemplate` del texto de error
+    const extractMessageTemplate = (errorText) => {
+        // Expresión regular para extraer el contenido del `messageTemplate`
+        const regex = /messageTemplate='([^']+)'/;
+        const match = errorText.match(regex);
+        return match ? match[1] : null;
     };
 
     const handleAddCategoryClick = () => {

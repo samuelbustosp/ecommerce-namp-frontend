@@ -13,13 +13,14 @@ const AddSubcategoryModal = ({ isOpen, onClose, onAddSubcategory, onUpdateSubcat
                 description: subcategoryToEdit.description,
                 idCategory: subcategoryToEdit.idCategory.idCategory
             });
+
             setSelectedCategory(categories.find(c => c.idCategory === subcategoryToEdit.idCategory.idCategory));
         } else {
             setSubcategory({ name: '', description: '', idCategory: null });
             setSelectedCategory(null);
         }
     }, [subcategoryToEdit, categories]);
-    
+
     const filteredOptions = useMemo(() => 
         categories
             .filter(option => 
@@ -49,6 +50,7 @@ const AddSubcategoryModal = ({ isOpen, onClose, onAddSubcategory, onUpdateSubcat
                 description: subcategory.description,
                 idCategory: selectedCategory
             };
+
             if (subcategoryToEdit) {
                 await onUpdateSubcategory(subcategoryToEdit.idSubcategory, subcategoryToSend);
             } else {
